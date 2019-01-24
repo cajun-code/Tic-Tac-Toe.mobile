@@ -7,8 +7,8 @@
     tools:context=".view.MainActivity">
 
     <TableLayout
-        android:layout_width="368dp"
-        android:layout_height="466dp"
+        android:layout_width="278dp"
+        android:layout_height="190dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
@@ -17,10 +17,9 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.413">
 
         <TableRow
             android:layout_width="match_parent"
@@ -80,9 +79,7 @@
                 tools:layout_editor_absoluteY="111dp" />
         </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="232dp">
+        <TableRow android:layout_height="130dp">
 
             <Button
                 android:id="@+id/button_layout_20"

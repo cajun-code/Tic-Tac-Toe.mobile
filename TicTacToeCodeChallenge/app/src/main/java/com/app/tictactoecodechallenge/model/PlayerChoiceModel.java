@@ -19,6 +19,7 @@ public class PlayerChoiceModel {
         return sharedpreferences.getString("computerChoice","?");
     }
 
+    // These method should be on the PlayerMArkDialog. Retuning NullPointerException even declaring SharedPreferences
     public void setXChoice() {
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putString("playerChoice", "X");

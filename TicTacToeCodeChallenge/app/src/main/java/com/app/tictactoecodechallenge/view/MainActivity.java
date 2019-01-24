@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.app.tictactoecodechallenge.R;
 import com.app.tictactoecodechallenge.presenter.MainPresenter;
@@ -18,7 +19,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity implements MainPresenter.View, View.OnClickListener {
 
     private Button buttonTiles [][] = new Button[3][3];
-    private boolean playerTurn = true;
+    private boolean playerTurn = true; //Player Turn
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
         setContentView(R.layout.activity_main);
 
 
+        // Set the button layout and to get the Button layout id by corresponding array
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 String buttonLayoutId = "button_layout_" + i + j;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
 
     }
 
+    // OnClickListener for the ButtonTitles.
     @Override
     public void onClick(View v) {
         //SharedPreferences preferences = getSharedPreferences("",MODE_PRIVATE);// get your preferences
@@ -50,11 +53,19 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
             ((Button) v).setText("O");
         }
 
-        computerView();
 
+        if (checkBoardStatus()){
+            computerView();
+            if (playerTurn) {
+                Toast.makeText(getApplicationContext(),"You Win!",Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(getApplicationContext(),"You Lose!",Toast.LENGTH_LONG).show();
+            }
+        }
 
     }
 
+    // Creates the Menu Layout
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -62,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
         return true;
     }
 
+    // Get to Listeners for the Menu Selected
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -73,14 +85,55 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
         }
     }
 
+    // Checks the board if the row and column has matched to determine spots filled
     @Override
     public boolean checkBoardStatus() {
+
+        String[][] field = new String[3][3];
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                field[i][j] = buttonTiles[i][j].getText().toString();
+            }
+        }
+
+        for (int i = 0; i < 3; i++) {
+            if (field[i][0].equals(field[i][1])
+                    && field[i][0].equals(field[i][2])
+                    && !field[i][0].equals("")) {
+                return true;
+            }
+        }
+
+        for (int i = 0; i < 3; i++) {
+            if (field[0][i].equals(field[1][i])
+                    && field[0][i].equals(field[2][i])
+                    && !field[0][i].equals("")) {
+                return true;
+            }
+        }
+
+        if (field[0][0].equals(field[1][1])
+                && field[0][0].equals(field[2][2])
+                && !field[0][0].equals("")) {
+            return true;
+        }
+
+        if (field[0][2].equals(field[1][1])
+                && field[0][2].equals(field[2][0])
+                && !field[0][2].equals("")) {
+            return true;
+        }
         return false;
     }
 
     @Override
     public void statusWinner() {
-
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                buttonTiles[i][j].setText("");
+            }
+        }
     }
 
     @Override
@@ -104,13 +157,19 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
             playerMarkDialog.show(fm, "dialog_playet_mark_choice");
     }
 
+    // This is the AI Component. After the onClickListener from the player, the computer will
+    // automatically pick a square
     @Override
     public void computerView() {
         Random r = new Random();
-        int i = r.nextInt(2); // chooses 0, 1, .. 4
-        int j = r.nextInt(2);
+        int i = r.nextInt(2); // Array bound for row
+        int j = r.nextInt(2); // Array bound for column
 
-        buttonTiles[i][j].setText("0");
+        if (buttonTiles[i][j].equals("")){
+            buttonTiles[i][j].setText("O");
+        }
+        buttonTiles[i][j].setText("O");
+
     }
 
 
