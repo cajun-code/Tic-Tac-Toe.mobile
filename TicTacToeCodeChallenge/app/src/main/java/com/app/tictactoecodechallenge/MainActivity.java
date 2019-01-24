@@ -1,13 +1,12 @@
 package com.app.tictactoecodechallenge;
 
+import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements MainPresenter.View, View.OnClickListener {
@@ -41,11 +40,10 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
     }
 
     @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+    public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_new_game:
-                showPlayerChoiceMark();
+                newGame();
                 return true;
             default:
                 return super.onContextItemSelected(item);
@@ -67,24 +65,19 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
 
     }
 
-    @Override
     public void newGame() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 buttonTiles[i][j].setText("");
             }
         }
-
-
-
-
+        showPlayerChoiceMark();
     }
 
     public void showPlayerChoiceMark() {
             FragmentManager fm = getSupportFragmentManager();
             PlayerMarkDialog playerMarkDialog = PlayerMarkDialog.newInstance("Choose");
             playerMarkDialog.show(fm, "dialog_playet_mark_choice");
-
     }
 
     @Override

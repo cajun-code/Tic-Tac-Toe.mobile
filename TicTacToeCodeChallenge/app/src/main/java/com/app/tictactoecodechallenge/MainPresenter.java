@@ -15,6 +15,6 @@ public class MainPresenter  {
         void statusWinner();
         void draw();
         void newGame();
-        //void showPlayerChoiceMark();
+        void showPlayerChoiceMark();
     }
 }
