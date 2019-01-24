@@ -1,5 +1,7 @@
 package com.app.tictactoecodechallenge;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements MainPresenter.View, View.OnClickListener {
+
+//    SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
 
     private Button buttonTiles [][] = new Button[3][3];
     private boolean playerTurn = true;
@@ -25,9 +29,12 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
                 int resID = getResources().getIdentifier(buttonLayoutId, "id", getPackageName());
                 buttonTiles[i][j] = findViewById(resID);
                 buttonTiles[i][j].setOnClickListener(this);
+
+                if (playerTurn){
+                    buttonTiles[i][j].setText("X");
+                }
             }
         }
-
         showPlayerChoiceMark();
 
     }
@@ -74,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
         showPlayerChoiceMark();
     }
 
+    // Dialog to show the user (via FragmentManager) the choice between X and O
     public void showPlayerChoiceMark() {
             FragmentManager fm = getSupportFragmentManager();
             PlayerMarkDialog playerMarkDialog = PlayerMarkDialog.newInstance("Choose");
