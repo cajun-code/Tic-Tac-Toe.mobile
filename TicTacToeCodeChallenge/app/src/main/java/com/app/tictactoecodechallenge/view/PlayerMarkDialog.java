@@ -1,30 +1,19 @@
-package com.app.tictactoecodechallenge;
+package com.app.tictactoecodechallenge.view;
 
-import android.annotation.TargetApi;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
 
-import java.util.Objects;
+import com.app.tictactoecodechallenge.R;
+import com.app.tictactoecodechallenge.model.PlayerChoiceModel;
 
-@TargetApi(Build.VERSION_CODES.KITKAT)
 public class PlayerMarkDialog extends DialogFragment {
 
-    private Context context;
-
-//    SharedPreferences sharedPref = Objects.requireNonNull(getActivity()).getSharedPreferences(
-//            getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-//    SharedPreferences.Editor editor = sharedPref.edit();
-
-
+    private PlayerChoiceModel playerChoiceModel;
     private Button xMarkButton;
     private Button oMarkButton;
 
@@ -58,9 +47,7 @@ public class PlayerMarkDialog extends DialogFragment {
         xMarkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                editor.putString("playerChoice", "X");
-//                editor.putString("computerChoice", "O");
-//                editor.commit();
+               // playerChoiceModel.setXChoice();
                 dismiss();
             }
         });
@@ -68,9 +55,7 @@ public class PlayerMarkDialog extends DialogFragment {
         oMarkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                editor.putString("playerChoice", "O");
-//                editor.putString("computerChoice", "X");
-//                editor.commit();
+               // playerChoiceModel.setOChoice();
                 dismiss();
             }
         });
