@@ -4,11 +4,11 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.view.View;
 
-public class MainPresenter  {
+public class MainPresenterView {
     private View view;
 
 
-    public MainPresenter(View view) {
+    public MainPresenterView(View view) {
         this.view = view;
     }
 

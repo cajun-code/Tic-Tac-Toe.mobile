@@ -1,6 +1,5 @@
 package com.app.tictactoecodechallenge.view;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -12,11 +11,11 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.app.tictactoecodechallenge.R;
-import com.app.tictactoecodechallenge.presenter.MainPresenter;
+import com.app.tictactoecodechallenge.presenter.MainPresenterView;
 
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity implements MainPresenter.View, View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements MainPresenterView.View, View.OnClickListener {
 
     private Button buttonTiles [][] = new Button[3][3];
     private boolean playerTurn = true; //Player Turn
@@ -52,10 +51,11 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
         } else {
             ((Button) v).setText("O");
         }
+        // Computer will make move after click
+        computerView();
 
 
         if (checkBoardStatus()){
-            computerView();
             if (playerTurn) {
                 Toast.makeText(getApplicationContext(),"You Win!",Toast.LENGTH_LONG).show();
             } else {
@@ -162,13 +162,12 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
     @Override
     public void computerView() {
         Random r = new Random();
-        int i = r.nextInt(2); // Array bound for row
-        int j = r.nextInt(2); // Array bound for column
+        int i = r.nextInt(3); // Array bound for row
+        int j = r.nextInt(3); // Array bound for column
 
-        if (buttonTiles[i][j].equals("")){
+        if (!buttonTiles[i][j].getText().equals("X")){
             buttonTiles[i][j].setText("O");
         }
-        buttonTiles[i][j].setText("O");
 
     }
 
