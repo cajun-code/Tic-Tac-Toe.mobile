@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">TicTacToeCodeChallenge</string>
     <string name="new_game">New Game</string>
+    <string name="button">Button</string>
+    <string name="player_select_a_mark">Player, select a mark</string>
+    <string name="x">X</string>
+    <string name="o">O</string>
 </resources>

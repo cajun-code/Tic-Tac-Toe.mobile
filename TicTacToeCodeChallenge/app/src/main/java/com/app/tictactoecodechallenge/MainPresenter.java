@@ -14,5 +14,7 @@ public class MainPresenter  {
         boolean checkBoardStatus();
         void statusWinner();
         void draw();
+        void newGame();
+        //void showPlayerChoiceMark();
     }
 }
