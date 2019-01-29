@@ -5,16 +5,16 @@ import static java.lang.Math.min;
 
 public class GameBoard {
     private GameBoardCell[][] gameBoardCells;
-    private char  userPiece;
-    private char AIpiece;
+    private String  userPiece;
+    private String AIpiece;
     private boolean gameIsActive;
    // private Move bestMove;
 
-    public char getAIpiece() {
+    public String getAIpiece() {
         return AIpiece;
     }
 
-    public void setAIpiece(char AIpiece) {
+    public void setAIpiece(String AIpiece) {
         this.AIpiece = AIpiece;
     }
 
@@ -23,17 +23,40 @@ public class GameBoard {
         setUserPiece(GameBoardCell.PIECE_X);
         setAIpiece(GameBoardCell.PIECE_O);
         gameIsActive = false;
+//        gameBoardCells{new GameBoardCell(), new GameBoardCell(), new GameBoardCell(),
+//                          new GameBoardCell(), new GameBoardCell(), new GameBoardCell(),
+//                          new GameBoardCell(), new GameBoardCell(), new GameBoardCell()};
+//        for(GameBoardCell[] cells: gameBoardCells)
+//        {
+//            for(GameBoardCell cell: cells)
+//            {
+//                cell = new GameBoardCell();
+//            }
+//        }
+//       gameBoardCells[0] = {new GameBoardCell(), new GameBoardCell(), new GameBoardCell()};
         gameBoardCells = new GameBoardCell[3][];
-        gameBoardCells[0] = new GameBoardCell[3];
-        gameBoardCells[1] = new GameBoardCell[3];
-        gameBoardCells[2] = new GameBoardCell[3];
+gameBoardCells[0] = new GameBoardCell[3];
+       gameBoardCells[0][0] =new GameBoardCell();
+       gameBoardCells[0][1] = new GameBoardCell();
+       gameBoardCells[0][2] = new GameBoardCell();
+
+       gameBoardCells[1] = new GameBoardCell[3];
+        gameBoardCells[1][0] =new GameBoardCell();
+        gameBoardCells[1][1] = new GameBoardCell();
+        gameBoardCells[1][2] = new GameBoardCell();
+
+       gameBoardCells[2] = new GameBoardCell[3];
+        gameBoardCells[2][0] =new GameBoardCell();
+        gameBoardCells[2][1] = new GameBoardCell();
+        gameBoardCells[2][2] = new GameBoardCell();
+
       //  bestMove= new Move();
     }
    public GameBoardCell[][] getGameBoardCells() {
         return gameBoardCells;
    }
 
-    public char getUserPiece() {
+    public String getUserPiece() {
         return userPiece;
     }
 
@@ -45,7 +68,7 @@ public class GameBoard {
 //        this.gameBoardC = gameBoard;
 //    }
 
-    public void setUserPiece(char userPiece) {
+    public void setUserPiece(String userPiece) {
         this.userPiece = userPiece;
     }
 
@@ -55,7 +78,7 @@ public class GameBoard {
 
     public void resetGameBoard()
     {
-        setUserPiece('X');
+        setUserPiece(GameBoardCell.PIECE_X);
         setGameActive(false);
         for(GameBoardCell[] cells: gameBoardCells) {
             for (GameBoardCell cell : cells) {
@@ -89,12 +112,12 @@ public class GameBoard {
         // Checking for Rows for X or O victory.
         for (int row = 0; row<3; row++)
         {
-            if (gameBoardCells[row][0].getCellPeice()==gameBoardCells[row][1].getCellPeice() &&
-                    gameBoardCells[row][1].getCellPeice()==gameBoardCells[row][2].getCellPeice())
+            if (gameBoardCells[row][0].getCellPiece()==gameBoardCells[row][1].getCellPiece() &&
+                    gameBoardCells[row][1].getCellPiece()==gameBoardCells[row][2].getCellPiece())
             {
-                if (gameBoardCells[row][0].getCellPeice()==AIpiece)
+                if (gameBoardCells[row][0].getCellPiece()==AIpiece)
                     return +10;
-                else if (gameBoardCells[row][0].getCellPeice()==userPiece)
+                else if (gameBoardCells[row][0].getCellPiece()==userPiece)
                     return -10;
             }
         }
@@ -102,33 +125,33 @@ public class GameBoard {
         // Checking for Columns for X or O victory.
         for (int col = 0; col<3; col++)
         {
-            if (gameBoardCells[0][col].getCellPeice()==gameBoardCells[1][col].getCellPeice() &&
-                    gameBoardCells[1][col].getCellPeice()==gameBoardCells[2][col].getCellPeice())
+            if (gameBoardCells[0][col].getCellPiece()==gameBoardCells[1][col].getCellPiece() &&
+                    gameBoardCells[1][col].getCellPiece()==gameBoardCells[2][col].getCellPiece())
             {
-                if (gameBoardCells[0][col].getCellPeice()==AIpiece)
+                if (gameBoardCells[0][col].getCellPiece()==AIpiece)
                     return +10;
 
-                else if (gameBoardCells[0][col].getCellPeice()==userPiece)
+                else if (gameBoardCells[0][col].getCellPiece()==userPiece)
                     return -10;
             }
         }
 
         // Checking for Diagonals for X or O victory.
-        if (gameBoardCells[0][0].getCellPeice()==gameBoardCells[1][1].getCellPeice()
-                && gameBoardCells[1][1].getCellPeice()==gameBoardCells[2][2].getCellPeice())
+        if (gameBoardCells[0][0].getCellPiece()==gameBoardCells[1][1].getCellPiece()
+                && gameBoardCells[1][1].getCellPiece()==gameBoardCells[2][2].getCellPiece())
         {
-            if (gameBoardCells[0][0].getCellPeice()==AIpiece)
+            if (gameBoardCells[0][0].getCellPiece()==AIpiece)
                 return +10;
-            else if (gameBoardCells[0][0].getCellPeice()==userPiece)
+            else if (gameBoardCells[0][0].getCellPiece()==userPiece)
                 return -10;
         }
 
-        if (gameBoardCells[0][2].getCellPeice()==gameBoardCells[1][1].getCellPeice()
-                && gameBoardCells[1][1].getCellPeice()==gameBoardCells[2][0].getCellPeice())
+        if (gameBoardCells[0][2].getCellPiece()==gameBoardCells[1][1].getCellPiece()
+                && gameBoardCells[1][1].getCellPiece()==gameBoardCells[2][0].getCellPiece())
         {
-            if (gameBoardCells[0][2].getCellPeice()==AIpiece)
+            if (gameBoardCells[0][2].getCellPiece()==AIpiece)
                 return +10;
-            else if (gameBoardCells[0][2].getCellPeice()==userPiece)
+            else if (gameBoardCells[0][2].getCellPiece()==userPiece)
                 return -10;
         }
 
@@ -172,7 +195,7 @@ public class GameBoard {
                     if (gameBoardCells[i][j].isCellFree())
                     {
                         // Make the move
-                        gameBoardCells[i][j].setCellPeice(AIpiece);
+                        gameBoardCells[i][j].setCellPiece(AIpiece);
 
                         // Call minimax recursively and choose
                         // the maximum value
@@ -180,7 +203,7 @@ public class GameBoard {
                                 minimax(depth+1, !isMax) );
 
                         // Undo the move
-                        gameBoardCells[i][j].setCellPeice(GameBoardCell.PIECE_BLANK);
+                        gameBoardCells[i][j].setCellPiece(GameBoardCell.PIECE_BLANK);
                     }
                 }
             }
@@ -201,7 +224,7 @@ public class GameBoard {
                     if (gameBoardCells[i][j].isCellFree())
                     {
                         // Make the move
-                        gameBoardCells[i][j].setCellPeice(userPiece);
+                        gameBoardCells[i][j].setCellPiece(userPiece);
 
                         // Call minimax recursively and choose
                         // the minimum value
@@ -209,7 +232,7 @@ public class GameBoard {
                                 minimax(depth+1, !isMax));
 
                         // Undo the move
-                        gameBoardCells[i][j].setCellPeice(GameBoardCell.PIECE_BLANK);
+                        gameBoardCells[i][j].setCellPiece(GameBoardCell.PIECE_BLANK);
                     }
                 }
             }
@@ -236,14 +259,14 @@ public class GameBoard {
                 if (gameBoardCells[i][j].isCellFree())
                 {
                     // Make the move
-                    gameBoardCells[i][j].setCellPeice(AIpiece);
+                    gameBoardCells[i][j].setCellPiece(AIpiece);
 
                     // compute evaluation function for this
                     // move.
                     int moveVal = minimax( 0, false);
 
                     // Undo the move
-                    gameBoardCells[i][j].setCellPeice(GameBoardCell.PIECE_BLANK);
+                    gameBoardCells[i][j].setCellPiece(GameBoardCell.PIECE_BLANK);
 
                     // If the value of the current move is
                     // more than the best value, then update

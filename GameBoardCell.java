@@ -3,35 +3,37 @@ package com.jin.mytictactoe;
 import android.widget.TextView;
 
 public class GameBoardCell {
-    static final char PIECE_X = 'X';
-    static final char PIECE_O = 'O';
-    static final char PIECE_BLANK=' ';
+    static final String PIECE_X = "X";
+    static final String PIECE_O = "O";
+    static final String PIECE_BLANK=" ";
 
     private TextView cellView;
-    private char     cellPeice;
+    private String     cellPiece;
 
 
     public GameBoardCell()
     {
         cellView = null;
-        cellPeice=PIECE_BLANK;
+        cellPiece=PIECE_BLANK;
     }
 
-    public GameBoardCell(TextView cellView, char cellPeice) {
+    public GameBoardCell(TextView cellView, String cellPiece) {
         this.cellView = cellView;
-        this.cellPeice = cellPeice;
+        this.cellPiece = cellPiece;
     }
+
+
 
     public TextView getCellView() {
         return cellView;
     }
 
-    public char getCellPeice() {
-        return cellPeice;
+    public String getCellPiece() {
+        return cellPiece;
     }
 
     public boolean isCellFree() {
-        if(getCellPeice()==PIECE_BLANK)
+        if(getCellPiece()==PIECE_BLANK)
             return true;
         else
             return false;
@@ -41,13 +43,14 @@ public class GameBoardCell {
         this.cellView = cellView;
     }
 
-    public void setCellPeice(char cellPeice) {
-        this.cellPeice = cellPeice;
+    public void setCellPiece(String cellPiece) {
+        this.cellPiece = cellPiece;
     }
 
 
     public void clearGameCell()
     {
-        setCellPeice(PIECE_BLANK);
+        setCellPiece(PIECE_BLANK);
+        getCellView().setText(" ");
     }
 }

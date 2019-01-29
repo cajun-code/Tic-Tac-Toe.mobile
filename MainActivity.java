@@ -19,7 +19,9 @@ public class MainActivity extends AppCompatActivity {
 
     private char userPerice;
 
-    public GameBoard gameBoard;
+    public GameBoard gameBoard = new GameBoard();
+    TextView textViewInfo;
+    RadioGroup radioGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,15 +32,17 @@ public class MainActivity extends AppCompatActivity {
        // TextView textViewSub   = findViewById(R.id.textViewSub);
 
 
-        final RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
 
 
         // Set x as default
 
         radioGroup.clearCheck();
         final RadioButton radioButtonX = (RadioButton)radioGroup.findViewById(R.id.radioButtonX);
+        final RadioButton radioButtonO = (RadioButton)radioGroup.findViewById(R.id.radioButtonO);
+
         radioButtonX.setChecked(true);
-        gameBoard = new GameBoard();
+        radioButtonX.setTextColor(getResources().getColor(R.color.colorAccent));
 
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
@@ -48,18 +52,29 @@ public class MainActivity extends AppCompatActivity {
                 if(checkedRB == radioButtonX)
                 {
                     gameBoard.setUserPiece(GameBoardCell.PIECE_X);
+                    radioButtonO.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+
                 }
-                else
+                else {
                     gameBoard.setUserPiece(GameBoardCell.PIECE_O);
+                    radioButtonX.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                }
+
+                checkedRB.setTextColor(getResources().getColor(R.color.colorAccent));
+                setTextViewInfo("Your perice is "+ gameBoard.getUserPiece());
             }
         });
 
-        final TextView textViewInfo = (TextView) findViewById(R.id.textViewInfo);
+        textViewInfo = (TextView) findViewById(R.id.textViewInfo);
+
+        //init the info
+        setTextViewInfo("Your piece is "+ gameBoard.getUserPiece());
 
         Button   buttonStart = (Button) findViewById(R.id.buttonStart);
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                gameBoard.resetGameBoard();
                 gameBoard.setGameActive(true);
                 radioGroup.setEnabled(false);
             }
@@ -85,9 +100,12 @@ public class MainActivity extends AppCompatActivity {
             for (int j=0; j< numOfColumn; j++)
             {
                 final TextView textView = (TextView) tableRow.getChildAt(j);
+                textView.setText((" "));
                 gameBoard.getGameBoardCells()[i][j].setCellView(textView);
+               // GameBoardCell tmpCell = gameBoard.getGameBoardCells()[i][j];
                 gameBoard.getGameBoardCells()[i][j].getCellView().setTag(i*3+j);
-                gameBoard.getGameBoardCells()[i][j].setCellPeice(gameBoard.getUserPiece());
+                gameBoard.getGameBoardCells()[i][j].setCellPiece(gameBoard.getUserPiece());
+                gameBoard.getGameBoardCells()[i][j].clearGameCell();
 
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -99,7 +117,8 @@ public class MainActivity extends AppCompatActivity {
                             GameBoardCell clickedCell = gameBoard.getGameBoardCells()[index/3][index%3];
                             if (clickedCell.isCellFree()){
                                 textView.setText(gameBoard.getUserPiece());
-                                clickedCell.setCellPeice(gameBoard.getUserPiece());
+                                clickedCell.setCellPiece(gameBoard.getUserPiece());
+                                clickedCell.getCellView().setText(gameBoard.getUserPiece());
 
                                switch( gameBoard.evaluate()) {
                                    case 10:
@@ -144,14 +163,20 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
-
+    public void enableRadioGroup(boolean bool)
+    {
+        radioGroup.setEnabled(bool);
+    }
+    public void setTextViewInfo(String str)
+    {
+        textViewInfo.setText(str);
+    }
     public void AIMove(TextView view)
     {
         // calcualte the move,
         Move bestMove = gameBoard.findBestMove();
         // set text
-        gameBoard.getGameBoardCells()[bestMove.getX()][bestMove.getY()].setCellPeice(gameBoard.getAIpiece());
+        gameBoard.getGameBoardCells()[bestMove.getX()][bestMove.getY()].setCellPiece(gameBoard.getAIpiece());
         gameBoard.getGameBoardCells()[bestMove.getX()][bestMove.getY()].getCellView().setText(gameBoard.getAIpiece());
 
         // eval the board
@@ -159,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
         {
             case 10:
                 //Ai win
+                enableRadioGroup(true);
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "The Machine has win!",
                         Toast.LENGTH_LONG);
@@ -166,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
                 toast.show();
             case -10:
                 //Human Win
+                enableRadioGroup(true);
                 Toast toastLose = Toast.makeText(getApplicationContext(),
                         "The Machine has win!",
                         Toast.LENGTH_LONG);
@@ -175,6 +202,7 @@ public class MainActivity extends AppCompatActivity {
             case 0:
                 //if there is no move left there is a tie,
                 if(!gameBoard.isMovesLeft()) {
+                    enableRadioGroup(true);
                     Toast toastTie = Toast.makeText(getApplicationContext(),
                             "The Machine has win!",
                             Toast.LENGTH_LONG);
