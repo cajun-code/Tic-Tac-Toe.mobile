@@ -3,19 +3,23 @@ package com.jin.mytictactoe;
 import android.widget.TextView;
 
 public class GameBoardCell {
-    TextView cellView;
-    char     cellPeice;
-    boolean  cellIsFree;
+    static final char PIECE_X = 'X';
+    static final char PIECE_O = 'O';
+    static final char PIECE_BLANK=' ';
+
+    private TextView cellView;
+    private char     cellPeice;
+
 
     public GameBoardCell()
     {
-
+        cellView = null;
+        cellPeice=PIECE_BLANK;
     }
 
-    public GameBoardCell(TextView cellView, char cellPeice, boolean cellIsFree) {
+    public GameBoardCell(TextView cellView, char cellPeice) {
         this.cellView = cellView;
         this.cellPeice = cellPeice;
-        this.cellIsFree = cellIsFree;
     }
 
     public TextView getCellView() {
@@ -27,7 +31,10 @@ public class GameBoardCell {
     }
 
     public boolean isCellFree() {
-        return cellIsFree;
+        if(getCellPeice()==PIECE_BLANK)
+            return true;
+        else
+            return false;
     }
 
     public void setCellView(TextView cellView) {
@@ -38,12 +45,9 @@ public class GameBoardCell {
         this.cellPeice = cellPeice;
     }
 
-    public void setCellFree(boolean cellIsFree) {
-        this.cellIsFree = cellIsFree;
-    }
+
     public void clearGameCell()
     {
-        setCellFree(true);
-        setCellPeice('X');
+        setCellPeice(PIECE_BLANK);
     }
 }

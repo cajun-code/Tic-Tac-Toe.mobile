@@ -11,13 +11,12 @@ import android.widget.RadioGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private boolean    buttonXIsSelected;
-    private boolean    gameStarted;
-    private final char UserPericeX = 'X';
-    private final char UserPericeO = 'O';
+
+
     private char userPerice;
 
     public GameBoard gameBoard;
@@ -31,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
        // TextView textViewSub   = findViewById(R.id.textViewSub);
 
 
-        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        final RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
 
 
         // Set x as default
@@ -48,20 +47,21 @@ public class MainActivity extends AppCompatActivity {
                 RadioButton checkedRB = (RadioButton) group.findViewById(checkedId);
                 if(checkedRB == radioButtonX)
                 {
-                    gameBoard.setUserPiece(UserPericeX);
+                    gameBoard.setUserPiece(GameBoardCell.PIECE_X);
                 }
                 else
-                    gameBoard.setUserPiece(UserPericeO);
+                    gameBoard.setUserPiece(GameBoardCell.PIECE_O);
             }
         });
 
-        TextView textViewInfo = (TextView) findViewById(R.id.textViewInfo);
+        final TextView textViewInfo = (TextView) findViewById(R.id.textViewInfo);
 
         Button   buttonStart = (Button) findViewById(R.id.buttonStart);
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 gameBoard.setGameActive(true);
+                radioGroup.setEnabled(false);
             }
         });
 
@@ -70,9 +70,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 gameBoard.resetGameBoard();
+                radioGroup.setEnabled(true);
             }
         });
-
 
         TableLayout tableLayout = (TableLayout) findViewById(R.id.tableLayout);
         int numOfRow = tableLayout.getChildCount();
@@ -81,13 +81,13 @@ public class MainActivity extends AppCompatActivity {
         {
             TableRow tableRow = (TableRow) tableLayout.getChildAt(i);
             int numOfColumn = tableRow.getChildCount();
+
             for (int j=0; j< numOfColumn; j++)
             {
                 final TextView textView = (TextView) tableRow.getChildAt(j);
-                gameBoard.gameBoardCells[i][j].setCellView(textView);
-                gameBoard.gameBoardCells[i][j].getCellView().setTag(i*3+j);
-                gameBoard.gameBoardCells[i][j].setCellPeice(gameBoard.userPiece);
-                gameBoard.gameBoardCells[i][j].setCellFree(false);
+                gameBoard.getGameBoardCells()[i][j].setCellView(textView);
+                gameBoard.getGameBoardCells()[i][j].getCellView().setTag(i*3+j);
+                gameBoard.getGameBoardCells()[i][j].setCellPeice(gameBoard.getUserPiece());
 
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -96,11 +96,42 @@ public class MainActivity extends AppCompatActivity {
 
                         if(gameBoard.isGameActive())
                         {
-                            GameBoardCell clickedCell = gameBoard.gameBoardCells[index/3][index%3];
+                            GameBoardCell clickedCell = gameBoard.getGameBoardCells()[index/3][index%3];
                             if (clickedCell.isCellFree()){
                                 textView.setText(gameBoard.getUserPiece());
-                                clickedCell.setCellFree(false);
-                                AIMove();
+                                clickedCell.setCellPeice(gameBoard.getUserPiece());
+
+                               switch( gameBoard.evaluate()) {
+                                   case 10:
+                                       //Ai win
+                                       Toast toast = Toast.makeText(getApplicationContext(),
+                                               "The Machine has win!",
+                                               Toast.LENGTH_LONG);
+
+                                       toast.show();
+                                   case -10:
+                                       //Human Win
+                                       Toast toastLose = Toast.makeText(getApplicationContext(),
+                                               "The Machine has win!",
+                                               Toast.LENGTH_LONG);
+
+                                       toastLose.show();
+
+                                   case 0:
+                                       //if there is no move left there is a tie, call AI
+                                       if (!gameBoard.isMovesLeft()) {
+                                           Toast toastTie = Toast.makeText(getApplicationContext(),
+                                                   "The Machine has win!",
+                                                   Toast.LENGTH_LONG);
+
+                                           toastTie.show();
+                                       } else {
+                                           AIMove(textViewInfo);
+                                       }
+                                   default:
+                                       System.out.println("default game eval, you are not suppose to be here");
+
+                               }
                             }
                         }
                     }
@@ -114,41 +145,51 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void setXOButtonToX(boolean bool)
-    {
-        buttonXIsSelected = bool;
-    }
 
-    public boolean getXOButtonState()
-    {
-        return buttonXIsSelected;
-    }
-
-    public void setGameState(boolean bool)
-    {
-        gameStarted = bool;
-    }
-
-    public boolean getGameState()
-    {
-        return gameStarted;
-    }
-
-    public char getUserPerice()
-    {
-        return userPerice;
-    }
-
-    public void setUserPeice(char piece)
-    {
-        userPerice = piece;
-    }
-    public void AIMove()
+    public void AIMove(TextView view)
     {
         // calcualte the move,
-
+        Move bestMove = gameBoard.findBestMove();
         // set text
+        gameBoard.getGameBoardCells()[bestMove.getX()][bestMove.getY()].setCellPeice(gameBoard.getAIpiece());
+        gameBoard.getGameBoardCells()[bestMove.getX()][bestMove.getY()].getCellView().setText(gameBoard.getAIpiece());
 
+        // eval the board
+        switch( gameBoard.evaluate())
+        {
+            case 10:
+                //Ai win
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        "The Machine has win!",
+                        Toast.LENGTH_LONG);
+
+                toast.show();
+            case -10:
+                //Human Win
+                Toast toastLose = Toast.makeText(getApplicationContext(),
+                        "The Machine has win!",
+                        Toast.LENGTH_LONG);
+
+                toastLose.show();
+
+            case 0:
+                //if there is no move left there is a tie,
+                if(!gameBoard.isMovesLeft()) {
+                    Toast toastTie = Toast.makeText(getApplicationContext(),
+                            "The Machine has win!",
+                            Toast.LENGTH_LONG);
+
+                    toastTie.show();
+                }
+                else
+                {
+                    // Tell user to move
+                    view.setText("Your Move! your peices is " + gameBoard.getUserPiece());
+                }
+            default:
+                System.out.println("default game eval, you are not suppose to be here after AI move");
+
+        }
         // call to inform user's turn
 
     }
