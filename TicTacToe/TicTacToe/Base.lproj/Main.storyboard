@@ -207,6 +207,7 @@
                         <outlet property="button8" destination="BG2-0A-g3u" id="FXS-rd-E8E"/>
                         <outlet property="chO" destination="TUC-6L-6tp" id="oC4-7U-Ip9"/>
                         <outlet property="chX" destination="w96-ST-gRZ" id="gNY-g9-C54"/>
+                        <outlet property="messageLabel" destination="LBN-xw-gBW" id="rll-gZ-NQn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
