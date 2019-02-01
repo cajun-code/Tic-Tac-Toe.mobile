@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     var playerButtonTagArray = [Int]()
     var aiButtonTagArray = [Int]()
     var aiWins = Bool()
+    var aiBlocks = Bool()
     
     
     @IBOutlet weak var messageLabel: UILabel!
@@ -90,6 +91,8 @@ class ViewController: UIViewController {
         //reset aiWin to false
         aiWins = false
         
+        //reset aiBLocks to false
+        aiBlocks = false
     }
 
     @IBAction func chooseXTapped(_ sender: UIButton) {
@@ -200,6 +203,11 @@ class ViewController: UIViewController {
             if aiWins == false {
                 blockThirdTileCheck()
                 
+                //if there was no tile to block
+                if aiBlocks == false {
+                    noWinNoBlock()
+                }
+                
                 // If AI didnt win on the fifth player turn then call it a draw
                 if playerButtonTagArray.count == 5 {
                     messageLabel.text = "It's a Draw"
@@ -220,74 +228,79 @@ class ViewController: UIViewController {
         
     }
     
+    //this function is a scenerio when neither a win for AI is identified nor a Block needs to be made.  In that case AI looks for an empty tile to mark
+    func noWinNoBlock() {
+        let arrButtons = [button0, button1, button2, button3, button4, button5, button6, button7, button8]
+        for button in arrButtons {
+            if button!.currentTitle != "X" || button!.currentTitle != "O" {
+                button!.setTitle(AIChoice, for: .normal)
+            }
+        }
+    }
+    
     
     func blockThirdTile(tag1: Int, tag2: Int, thirdTile: UIButton) {
         
         if playerButtonTagArray.contains(tag1) &&  playerButtonTagArray.contains(tag2) {
             thirdTile.setTitle(AIChoice, for: .normal)
             aiButtonTagArray.append(thirdTile.tag)
+            aiBlocks = true
             isButtonEnabled(isEnabled: true)
             
         }
         
     }
     func blockThirdTileCheck() {
-        //find out if they tapped the center button or not previously
-        //if aiButtonTagArray.contains(4) {
-            //center button taken by AI
-            //block the third tile for 0,1,2 combination
+        
+        //check the 8 possible solutions and block the third tile in the solution combination
+        
+        //block the third tile for 3,4,5 combination
             
-            blockThirdTile(tag1: 0, tag2: 1, thirdTile: button2)
-            blockThirdTile(tag1: 0, tag2: 2, thirdTile: button1)
-            blockThirdTile(tag1: 1, tag2: 2, thirdTile: button0)
+        blockThirdTile(tag1: 0, tag2: 1, thirdTile: button2)
+        blockThirdTile(tag1: 0, tag2: 2, thirdTile: button1)
+        blockThirdTile(tag1: 1, tag2: 2, thirdTile: button0)
+        
+        //block the third tile for 0,3,6 combination
+        
+        blockThirdTile(tag1: 0, tag2: 3, thirdTile: button6)
+        blockThirdTile(tag1: 0, tag2: 6, thirdTile: button3)
+        blockThirdTile(tag1: 3, tag2: 6, thirdTile: button0)
+        
+        //block the third tile for 2,5,8 combination
+        
+        blockThirdTile(tag1: 2, tag2: 5, thirdTile: button8)
+        blockThirdTile(tag1: 2, tag2: 8, thirdTile: button5)
+        blockThirdTile(tag1: 5, tag2: 8, thirdTile: button2)
+        
+        //block the third tile for 6,7,8 combination
+        
+        blockThirdTile(tag1: 6, tag2: 7, thirdTile: button8)
+        blockThirdTile(tag1: 7, tag2: 8, thirdTile: button6)
+        blockThirdTile(tag1: 6, tag2: 8, thirdTile: button7)
+        
+        //block the third tile for 3,4,5 combination
             
-            //block the third tile for 0,3,6 combination
+        blockThirdTile(tag1: 3, tag2: 4, thirdTile: button5)
+        blockThirdTile(tag1: 4, tag2: 5, thirdTile: button3)
+        blockThirdTile(tag1: 3, tag2: 5, thirdTile: button4)
+        
+        
+        //block the third tile for 1,4,7 combination
+        blockThirdTile(tag1: 1, tag2: 4, thirdTile: button7)
+        blockThirdTile(tag1: 4, tag2: 7, thirdTile: button1)
+        blockThirdTile(tag1: 1, tag2: 7, thirdTile: button4)
+        
+        //when zero button tag is a player choice check and block the third tile for 0,4,8 combination
+        blockThirdTile(tag1: 0, tag2: 4, thirdTile: button8)
+        blockThirdTile(tag1: 4, tag2: 8, thirdTile: button0)
+        blockThirdTile(tag1: 0, tag2: 8, thirdTile: button4)
+        
+        //block the third tile for 2,4,6 combination
+        blockThirdTile(tag1: 2, tag2: 4, thirdTile: button6)
+        blockThirdTile(tag1: 6, tag2: 4, thirdTile: button2)
+        blockThirdTile(tag1: 2, tag2: 6, thirdTile: button4)
             
-            blockThirdTile(tag1: 0, tag2: 3, thirdTile: button6)
-            blockThirdTile(tag1: 0, tag2: 6, thirdTile: button3)
-            blockThirdTile(tag1: 3, tag2: 6, thirdTile: button0)
-            
-            //block the third tile for 2,5,8 combination
-            
-            blockThirdTile(tag1: 2, tag2: 5, thirdTile: button8)
-            blockThirdTile(tag1: 2, tag2: 8, thirdTile: button5)
-            blockThirdTile(tag1: 5, tag2: 8, thirdTile: button2)
-            
-            //block the third tile for 6,7,8 combination
-            
-            blockThirdTile(tag1: 6, tag2: 7, thirdTile: button8)
-            blockThirdTile(tag1: 7, tag2: 8, thirdTile: button6)
-            blockThirdTile(tag1: 6, tag2: 8, thirdTile: button7)
-            
-            
-            
-        //}
-        //else
-        //{
-            //center button (tag4) taken by player check the 8 possible solutions and block the third tile in the solution combination
-            //block the third tile for 3,4,5 combination
-            
-            blockThirdTile(tag1: 3, tag2: 4, thirdTile: button5)
-            blockThirdTile(tag1: 4, tag2: 5, thirdTile: button3)
-            blockThirdTile(tag1: 3, tag2: 5, thirdTile: button4)
-            
-            
-            //block the third tile for 1,4,7 combination
-            blockThirdTile(tag1: 1, tag2: 4, thirdTile: button7)
-            blockThirdTile(tag1: 4, tag2: 7, thirdTile: button1)
-            blockThirdTile(tag1: 1, tag2: 7, thirdTile: button4)
-            
-            //when zero button tag is a player choice check and block the third tile for 0,4,8 combination
-            blockThirdTile(tag1: 0, tag2: 4, thirdTile: button8)
-            blockThirdTile(tag1: 4, tag2: 8, thirdTile: button0)
-            blockThirdTile(tag1: 0, tag2: 8, thirdTile: button4)
-            
-            //block the third tile for 2,4,6 combination
-            blockThirdTile(tag1: 2, tag2: 4, thirdTile: button6)
-            blockThirdTile(tag1: 6, tag2: 4, thirdTile: button2)
-            blockThirdTile(tag1: 2, tag2: 6, thirdTile: button4)
-            
-       // }
+       
         
         
         
