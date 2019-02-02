@@ -1,0 +1,32 @@
+/* Add mobile styles for the component here.  */
+.title{
+    font-size: 25;
+    padding:10,10,0,10;
+    font-weight: bold;
+    text-align: center;
+}
+.sub{
+    text-align: center;
+}
+
+.radio-group{
+    margin-left: 30%;   
+}
+
+.radio-btn{
+    font-size: 25;
+    font-weight: 400;
+}
+.info{
+    margin: 10,50,0,50;
+    font-size: 20;
+    font-weight: 400; 
+}
+.actions{
+    margin-left: 28%;
+}
+
+.action-btn{
+    font-size: 25;
+    font-weight: 400;
+}
