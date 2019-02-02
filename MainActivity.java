@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
         radioButtonX.setChecked(true);
         radioButtonX.setTextColor(getResources().getColor(R.color.colorAccent));
+        gameBoard.setUserPiece(GameBoardCell.PIECE_X);
+        gameBoard.setAIpiece(GameBoardCell.PIECE_O);
 
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
@@ -52,16 +54,18 @@ public class MainActivity extends AppCompatActivity {
                 if(checkedRB == radioButtonX)
                 {
                     gameBoard.setUserPiece(GameBoardCell.PIECE_X);
-                    radioButtonO.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                    gameBoard.setAIpiece(GameBoardCell.PIECE_O);
+                    radioButtonO.setTextColor(getResources().getColor(R.color.colorBlack));
 
                 }
                 else {
                     gameBoard.setUserPiece(GameBoardCell.PIECE_O);
-                    radioButtonX.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                    gameBoard.setAIpiece(GameBoardCell.PIECE_X);
+                    radioButtonX.setTextColor(getResources().getColor(R.color.colorBlack));
                 }
 
                 checkedRB.setTextColor(getResources().getColor(R.color.colorAccent));
-                setTextViewInfo("Your perice is "+ gameBoard.getUserPiece());
+                setTextViewInfo("Your piece is "+ gameBoard.getUserPiece());
             }
         });
 
@@ -76,7 +80,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 gameBoard.resetGameBoard();
                 gameBoard.setGameActive(true);
-                radioGroup.setEnabled(false);
+//                radioGroup.setEnabled(false);
+                radioButtonO.setEnabled(false);
+                radioButtonX.setEnabled(false);
             }
         });
 
@@ -85,7 +91,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 gameBoard.resetGameBoard();
-                radioGroup.setEnabled(true);
+               // radioGroup.setEnabled(true);
+                radioButtonO.setEnabled(true);
+                radioButtonX.setEnabled(true);
             }
         });
 
@@ -212,13 +220,12 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     // Tell user to move
-                    view.setText("Your Move! your peices is " + gameBoard.getUserPiece());
+                    view.setText("Your Move! your piece is " + gameBoard.getUserPiece());
                 }
             default:
                 System.out.println("default game eval, you are not suppose to be here after AI move");
 
         }
         // call to inform user's turn
-
     }
 }

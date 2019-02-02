@@ -79,6 +79,7 @@ gameBoardCells[0] = new GameBoardCell[3];
     public void resetGameBoard()
     {
         setUserPiece(GameBoardCell.PIECE_X);
+        setAIpiece(GameBoardCell.PIECE_O);
         setGameActive(false);
         for(GameBoardCell[] cells: gameBoardCells) {
             for (GameBoardCell cell : cells) {
