@@ -27,6 +27,9 @@ class Board: UIView {
                 let cell = Cell(frame:
                     CGRect(x: i * cellWidth, y: j * cellHeight, width: cellWidth, height: cellHeight)
                 )
+                cell.actionBlock = { [weak self] in
+                    self?.boardModel?.updateBoard(atRow: i, col: j, setBy: .player)
+                }
                 self.addSubview(cell)
             }
         }

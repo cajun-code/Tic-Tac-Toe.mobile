@@ -9,6 +9,8 @@
 import UIKit
 
 class Cell: UIButton {
+    var actionBlock: (() -> ())?
+    
     var setBy = CellOwner.none {
         didSet {
             updateUI()
@@ -19,14 +21,24 @@ class Cell: UIButton {
         super.init(frame: frame)
         
         self.titleLabel?.font = UIFont.systemFont(ofSize: 36)
+        self.setTitleColor(.black, for: .normal)
         self.layer.borderWidth = 1
         self.layer.borderColor = UIColor.black.cgColor
         
         updateUI()
+        
+        addTarget(self, action: #selector(tapped), for: .touchUpInside)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func tapped() {
+        if setBy == .none {
+            self.actionBlock?()
+            self.setBy = .player
+        }
     }
     
     func updateUI() {

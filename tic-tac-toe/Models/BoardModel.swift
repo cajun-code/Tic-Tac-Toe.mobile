@@ -8,24 +8,25 @@
 
 import Foundation
 
-enum CellOwner: Int {
-    case none
-    case player
-    case opponent
+enum CellOwner: String {
+    case none = " "
+    case player = "x"
+    case opponent = "o"
     
     func textual() -> String {
-        switch self {
-        case .player:
-            return " "
-        case .opponent:
-            return " "
-        case .none:
-            return " "
-        }
+        return self.rawValue
+//        switch self {
+//        case .player:
+//            return "x"
+//        case .opponent:
+//            return "o"
+//        case .none:
+//            return " "
+//        }
     }
 }
 
-struct BoardModel {
+class BoardModel {
     var board: [[String]]
     
     init() {
@@ -34,5 +35,9 @@ struct BoardModel {
             [" ", "x", " "],
             [" ", " ", "o"]
         ]
+    }
+    
+    func updateBoard(atRow row: Int, col: Int, setBy newOwner: CellOwner) {
+        board[row][col] = newOwner.rawValue
     }
 }

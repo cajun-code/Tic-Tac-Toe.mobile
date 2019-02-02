@@ -93,7 +93,6 @@
 				B4534E7B2205AE7A004EDD4A /* Assets.xcassets */,
 				B4534E7D2205AE7A004EDD4A /* LaunchScreen.storyboard */,
 				B4534E802205AE7A004EDD4A /* Info.plist */,
-				B4534E942205B0AC004EDD4A /* Move.swift */,
 			);
 			path = "tic-tac-toe";
 			sourceTree = "<group>";
@@ -120,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				B4534E9C2205D945004EDD4A /* BoardModel.swift */,
+				B4534E942205B0AC004EDD4A /* Move.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
