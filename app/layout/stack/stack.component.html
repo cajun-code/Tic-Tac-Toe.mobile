@@ -1,0 +1,27 @@
+<!-- <Button text="stack works!" class="btn btn-primary"></Button> -->
+<StackLayout height="45%">
+    <StackLayout height="30%">
+        <Label class="title"  text="Welcome to Tic Tac Toe!">
+        </Label>
+        <Label class="sub"  text="written in NativeScript">
+        </Label>
+    </StackLayout>
+    <StackLayout class="radio-group" height="20%" orientation="horizontal">
+        <Button class="radio-btn" text="X"  (tap)="onRadioTap('X')" color={{textColorX}} >
+
+        </Button>
+        <Button class="radio-btn" text="O" (tap)="onRadioTap('O')", color={{textColorO}}>
+
+        </Button>
+    </StackLayout>
+    <Label class="info" height="30%" text={{infoBoxText}} textWrap="true">
+    </Label>
+    <StackLayout class="actions" height="20%" orientation="horizontal">
+        <Button class="action-btn" text="Start" (tap)="onStartTap()">
+        </Button>
+        <Button class="action-btn" text="Reset" (tap)="onResetTap()">
+        </Button>
+    </StackLayout>
+    
+
+</StackLayout>

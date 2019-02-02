@@ -1,0 +1,16 @@
+/* Add mobile styles for the component here.  */
+Label {
+    border-width: 1;
+    border-color: black;
+    
+    text-align: center;
+    font-size: 40;
+    height: 33%;
+    display: inline-block;
+    vertical-align: middle;
+    padding:18;
+}
+
+GridLayout{
+    margin: 8%,50,8%,50;
+}
