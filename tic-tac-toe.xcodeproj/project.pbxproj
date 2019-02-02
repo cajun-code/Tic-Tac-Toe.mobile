@@ -14,6 +14,9 @@
 		B4534E7F2205AE7A004EDD4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4534E7D2205AE7A004EDD4A /* LaunchScreen.storyboard */; };
 		B4534E8A2205AE7A004EDD4A /* tic_tac_toeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4534E892205AE7A004EDD4A /* tic_tac_toeTests.swift */; };
 		B4534E952205B0AC004EDD4A /* Move.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4534E942205B0AC004EDD4A /* Move.swift */; };
+		B4534E982205D884004EDD4A /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4534E972205D884004EDD4A /* Board.swift */; };
+		B4534E9D2205D945004EDD4A /* BoardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4534E9C2205D945004EDD4A /* BoardModel.swift */; };
+		B4534E9F2205DCAE004EDD4A /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4534E9E2205DCAE004EDD4A /* Cell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +41,9 @@
 		B4534E892205AE7A004EDD4A /* tic_tac_toeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tic_tac_toeTests.swift; sourceTree = "<group>"; };
 		B4534E8B2205AE7A004EDD4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4534E942205B0AC004EDD4A /* Move.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Move.swift; sourceTree = "<group>"; };
+		B4534E972205D884004EDD4A /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		B4534E9C2205D945004EDD4A /* BoardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardModel.swift; sourceTree = "<group>"; };
+		B4534E9E2205DCAE004EDD4A /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +85,8 @@
 		B4534E732205AE79004EDD4A /* tic-tac-toe */ = {
 			isa = PBXGroup;
 			children = (
+				B4534E9B2205D917004EDD4A /* Models */,
+				B4534E962205D86D004EDD4A /* Views */,
 				B4534E742205AE79004EDD4A /* AppDelegate.swift */,
 				B4534E762205AE79004EDD4A /* ViewController.swift */,
 				B4534E782205AE79004EDD4A /* Main.storyboard */,
@@ -97,6 +105,23 @@
 				B4534E8B2205AE7A004EDD4A /* Info.plist */,
 			);
 			path = "tic-tac-toeTests";
+			sourceTree = "<group>";
+		};
+		B4534E962205D86D004EDD4A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B4534E972205D884004EDD4A /* Board.swift */,
+				B4534E9E2205DCAE004EDD4A /* Cell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B4534E9B2205D917004EDD4A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B4534E9C2205D945004EDD4A /* BoardModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,7 +227,10 @@
 			files = (
 				B4534E772205AE79004EDD4A /* ViewController.swift in Sources */,
 				B4534E952205B0AC004EDD4A /* Move.swift in Sources */,
+				B4534E982205D884004EDD4A /* Board.swift in Sources */,
+				B4534E9D2205D945004EDD4A /* BoardModel.swift in Sources */,
 				B4534E752205AE79004EDD4A /* AppDelegate.swift in Sources */,
+				B4534E9F2205DCAE004EDD4A /* Cell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,7 +17,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        view.addSubview(Board(frame: view.frame))
         
         var board = [
             ["o", " ", " "],
@@ -27,7 +28,8 @@ class ViewController: UIViewController {
         
         let bestMove = findBestMove(&board)
         
-        print(bestMove)
+        print("The Optimal Move is :\n");
+        print("ROW: \(bestMove.row) COL: \(bestMove.col)\n\n");
     }
     
     func findBestMove(_ board: inout [[String]]) -> Move {
@@ -52,6 +54,8 @@ class ViewController: UIViewController {
                 
             }
         }
+        
+        print("The value of the best Move is: \(bestVal)\n\n")
         
         return bestMove
     }
