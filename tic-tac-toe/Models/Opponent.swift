@@ -9,6 +9,8 @@
 import Foundation
 
 class Opponent {
+    static let shared = Opponent()
+    
     var player: String {
         return CellOwner.opponent.rawValue
     }
@@ -16,6 +18,11 @@ class Opponent {
     var opponent: String {
         return CellOwner.player.rawValue
     }
+    
+    var none: String {
+        return CellOwner.none.rawValue
+    }
+    
     
     func findBestMove(_ board: inout [[String]]) -> Move {
         var bestVal = -1000;
@@ -50,7 +57,7 @@ class Opponent {
             return score
         }
         
-        if anyMovesLeft(board) { return 0 }
+        if anyMovesLeft(board) == false { return 0 }
         
         if isMax {
             var best = -1000
@@ -90,7 +97,7 @@ class Opponent {
     private func anyMovesLeft(_ board: [[String]]) -> Bool {
         for i in 0...2 {
             for j in 0...2 {
-                if board[i][j] == CellOwner.none.rawValue {
+                if board[i][j] == none {
                     return true
                 }
             }

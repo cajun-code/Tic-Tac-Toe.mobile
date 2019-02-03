@@ -15,16 +15,14 @@ class ViewController: UIViewController {
         
         view.addSubview(boardView)
         
-        boardView.onTurn = {
-            
+        boardView.onTurn = { boardModel in
+            print(boardModel.board)
+            let bestMove = Opponent.shared.findBestMove(&boardModel.board)
+            print(bestMove)
+            self.boardView.makeTurn(onRow: bestMove.row, col: bestMove.col, setBy: .opponent)
+            print(boardModel.board)
+            print("================")
         }
-//        var board = [
-//            ["o", " ", " "],
-//            [" ", "x", " "],
-//            [" ", " ", "o"]
-//        ]
-        
-//        let bestMove = findBestMove(&board)
     }
     
     lazy var boardView: Board = {
