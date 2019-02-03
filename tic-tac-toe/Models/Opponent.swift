@@ -50,6 +50,20 @@ class Opponent {
         return bestMove
     }
     
+    func whoWon(board: [[String]]) -> String? {
+        let result = evaluate(board)
+        switch result {
+        case 10:
+            return player
+        case -10:
+            return opponent
+        case 0:
+            return nil
+        default: break
+        }
+        return nil
+    }
+    
     private func minimax(_ board: inout [[String]], isMaximizer isMax: Bool) -> Int {
         let score = evaluate(board)
         
@@ -94,7 +108,7 @@ class Opponent {
         }
     }
     
-    private func anyMovesLeft(_ board: [[String]]) -> Bool {
+    func anyMovesLeft(_ board: [[String]]) -> Bool {
         for i in 0...2 {
             for j in 0...2 {
                 if board[i][j] == none {
@@ -110,7 +124,10 @@ class Opponent {
             if board[row][0] == board[row][1] &&
                 board[row][1] == board[row][2]
             {
-                return (board[row][0] == player) ? 10 : -10
+                let val = board[row][0]
+                guard val == none else {
+                    return (val == player) ? 10 : -10
+                }
             }
         }
         
@@ -118,7 +135,10 @@ class Opponent {
             if board[0][col] == board[1][col] &&
                 board[1][col] == board[2][col]
             {
-                return (board[0][col] == player) ? 10 : -10
+                let val = board[0][col]
+                guard val == none else {
+                    return (val == player) ? 10 : -10
+                }
             }
         }
         
@@ -127,13 +147,19 @@ class Opponent {
         if board[0][0] == board[1][1] &&
             board[1][1] == board[2][2]
         {
-            return (board[0][0] == player) ? 10 : -10
+            let val = board[0][0]
+            guard val == none else {
+                return (val == player) ? 10 : -10
+            }
         }
         
         if board[0][2] == board[1][1] &&
             board[1][1] == board[2][0]
         {
-            return (board[0][2] == player) ? 10 : -10
+            let val = board[0][2]
+            guard val == none else {
+                return (val == player) ? 10 : -10
+            }
         }
         
         return 0

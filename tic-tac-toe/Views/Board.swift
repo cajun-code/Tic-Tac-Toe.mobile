@@ -33,7 +33,11 @@ class Board: UIView {
         updateModel()
     }
     
-    func updateModel() {
+    func update() {
+        self.updateModel()
+    }
+    
+    private func updateModel() {
         for i in 0...2 {
             for j in 0...2 {
                 let cell = cells[i][j]

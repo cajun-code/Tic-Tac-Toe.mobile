@@ -19,17 +19,26 @@ enum CellOwner: String {
 }
 
 class BoardModel {
-    var board: [[String]]
+    var board: [[String]] = []
     
     init() {
-        board = [
-            ["o", " ", "x"],
-            [" ", "x", " "],
-            ["o", " ", " "]
-        ]
+        resetBoard()
+//        board = [
+//            ["o", " ", "x"],
+//            [" ", "x", " "],
+//            ["o", " ", " "]
+//        ]
     }
     
     func updateBoard(atRow row: Int, col: Int, setBy newOwner: CellOwner) {
         board[row][col] = newOwner.rawValue
+    }
+    
+    func resetBoard() {
+        board = [
+            [" ", " ", " "],
+            [" ", " ", " "],
+            [" ", " ", " "]
+        ]
     }
 }
