@@ -15,14 +15,6 @@ enum CellOwner: String {
     
     func textual() -> String {
         return self.rawValue
-//        switch self {
-//        case .player:
-//            return "x"
-//        case .opponent:
-//            return "o"
-//        case .none:
-//            return " "
-//        }
     }
 }
 

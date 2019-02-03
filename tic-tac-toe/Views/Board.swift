@@ -9,17 +9,18 @@
 import UIKit
 
 class Board: UIView {
+    
+    var onTurn: (() -> ())?
+    
     var boardModel: BoardModel? {
         didSet {
             if let model = boardModel {
-                updateBoard(withBoardModel: model)
+                createBoard(withBoardModel: model)
             }
         }
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
+    func createBoard(withBoardModel boardModel: BoardModel) {
         let cellWidth = Int(bounds.width / 3)
         let cellHeight = Int(bounds.height / 3)
         for i in 0...2 {
@@ -29,17 +30,10 @@ class Board: UIView {
                 )
                 cell.actionBlock = { [weak self] in
                     self?.boardModel?.updateBoard(atRow: i, col: j, setBy: .player)
+                    self?.onTurn?()
                 }
                 self.addSubview(cell)
             }
         }
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func updateBoard(withBoardModel boardModel: BoardModel) {
-        
     }
 }
