@@ -28,8 +28,16 @@ public class GameBoardCell {
         return cellView;
     }
 
+    public void setCellView(TextView cellView) {
+        this.cellView = cellView;
+    }
+
     public String getCellPiece() {
         return cellPiece;
+    }
+
+    public void setCellPiece(String cellPiece) {
+        this.cellPiece = cellPiece;
     }
 
     public boolean isCellFree() {
@@ -39,18 +47,15 @@ public class GameBoardCell {
             return false;
     }
 
-    public void setCellView(TextView cellView) {
-        this.cellView = cellView;
-    }
-
-    public void setCellPiece(String cellPiece) {
-        this.cellPiece = cellPiece;
-    }
-
-
     public void clearGameCell()
     {
         setCellPiece(PIECE_BLANK);
         getCellView().setText(" ");
+    }
+
+    public void writeToCell(String cellPiece)
+    {
+        setCellPiece(cellPiece);
+        this.cellView.setText(cellPiece);
     }
 }

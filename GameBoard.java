@@ -4,11 +4,14 @@ import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 public class GameBoard {
+   // private String boardState;
     private GameBoardCell[][] gameBoardCells;
-    private String  userPiece;
+    private String userPiece;
     private String AIpiece;
     private boolean gameIsActive;
-   // private Move bestMove;
+    private boolean gameIsSuspended;
+    private boolean userTurn;
+    // private Move bestMove;
 
     public String getAIpiece() {
         return AIpiece;
@@ -16,13 +19,24 @@ public class GameBoard {
 
     public void setAIpiece(String AIpiece) {
         this.AIpiece = AIpiece;
+
+        if(AIpiece==GameBoardCell.PIECE_O)
+        {
+            this.userPiece=GameBoardCell.PIECE_X;
+        }
+        else
+        {
+            this.userPiece=GameBoardCell.PIECE_O;
+        }
     }
 
-    public GameBoard()
-    {
+    public GameBoard() {
         setUserPiece(GameBoardCell.PIECE_X);
         setAIpiece(GameBoardCell.PIECE_O);
-        gameIsActive = false;
+       // gameIsActive = false;
+        setGameActive(false);
+        setGameSuspended(false);
+
 //        gameBoardCells{new GameBoardCell(), new GameBoardCell(), new GameBoardCell(),
 //                          new GameBoardCell(), new GameBoardCell(), new GameBoardCell(),
 //                          new GameBoardCell(), new GameBoardCell(), new GameBoardCell()};
@@ -35,26 +49,30 @@ public class GameBoard {
 //        }
 //       gameBoardCells[0] = {new GameBoardCell(), new GameBoardCell(), new GameBoardCell()};
         gameBoardCells = new GameBoardCell[3][];
-gameBoardCells[0] = new GameBoardCell[3];
-       gameBoardCells[0][0] =new GameBoardCell();
-       gameBoardCells[0][1] = new GameBoardCell();
-       gameBoardCells[0][2] = new GameBoardCell();
+        gameBoardCells[0] = new GameBoardCell[3];
+        gameBoardCells[0][0] = new GameBoardCell();
+        gameBoardCells[0][1] = new GameBoardCell();
+        gameBoardCells[0][2] = new GameBoardCell();
 
-       gameBoardCells[1] = new GameBoardCell[3];
-        gameBoardCells[1][0] =new GameBoardCell();
+        gameBoardCells[1] = new GameBoardCell[3];
+        gameBoardCells[1][0] = new GameBoardCell();
         gameBoardCells[1][1] = new GameBoardCell();
         gameBoardCells[1][2] = new GameBoardCell();
 
-       gameBoardCells[2] = new GameBoardCell[3];
-        gameBoardCells[2][0] =new GameBoardCell();
+        gameBoardCells[2] = new GameBoardCell[3];
+        gameBoardCells[2][0] = new GameBoardCell();
         gameBoardCells[2][1] = new GameBoardCell();
         gameBoardCells[2][2] = new GameBoardCell();
 
-      //  bestMove= new Move();
+        //  bestMove= new Move();
     }
-   public GameBoardCell[][] getGameBoardCells() {
+
+
+
+    public GameBoardCell[][] getGameBoardCells() {
         return gameBoardCells;
-   }
+    }
+
 
     public String getUserPiece() {
         return userPiece;
@@ -70,18 +88,36 @@ gameBoardCells[0] = new GameBoardCell[3];
 
     public void setUserPiece(String userPiece) {
         this.userPiece = userPiece;
+        if(userPiece==GameBoardCell.PIECE_O)
+        {
+            this.AIpiece=GameBoardCell.PIECE_X;
+        }
+        else
+        {
+            this.AIpiece=GameBoardCell.PIECE_O;
+        }
     }
 
     public void setGameActive(boolean gameIsActive) {
         this.gameIsActive = gameIsActive;
     }
 
-    public void resetGameBoard()
+    public boolean isGameSuspended()
     {
+        return this.gameIsSuspended;
+    }
+
+    public void setGameSuspended(boolean state)
+    {
+        this.gameIsSuspended = state;
+    }
+
+    public void resetGameBoard() {
         setUserPiece(GameBoardCell.PIECE_X);
         setAIpiece(GameBoardCell.PIECE_O);
         setGameActive(false);
-        for(GameBoardCell[] cells: gameBoardCells) {
+        setGameSuspended(false);
+        for (GameBoardCell[] cells : gameBoardCells) {
             for (GameBoardCell cell : cells) {
                 if (cell != null) {
                     cell.clearGameCell();
@@ -90,17 +126,57 @@ gameBoardCells[0] = new GameBoardCell[3];
         }
     }
 
+
+
+    public  String getBoardState()
+    {
+        String boardState ="";
+        for (GameBoardCell[] cells: gameBoardCells){
+            for(GameBoardCell cell: cells)
+            {
+                boardState =boardState + cell.getCellPiece();
+            }
+        }
+        return boardState;
+    }
+
+    public void restoreBoard(String boardState) {
+        int len = boardState.length();
+        char temp;
+        for (int i = 0; i < len; i++) {
+            temp = boardState.charAt(i);
+            switch (temp) {
+                case ' ':
+                    gameBoardCells[i / 3][i % 3].writeToCell(GameBoardCell.PIECE_BLANK);
+                    break;
+                case'X':
+                    gameBoardCells[i / 3][i % 3].writeToCell(GameBoardCell.PIECE_X);
+                    break;
+                case 'O':
+                    gameBoardCells[i / 3][i % 3].writeToCell(GameBoardCell.PIECE_O);
+                    break;
+                default:
+                    break;
+            }
+
+        }
+    }
+
+    public boolean isUserTurn()
+    {
+        return userTurn;
+    }
+
+    public void setUserTurn(boolean userTurn){
+        this.userTurn = userTurn;
+    }
     // This function returns true if there are moves
 // remaining on the board. It returns false if
 // there are no moves left to play.
-    boolean isMovesLeft()
-    {
-        for (GameBoardCell[] cells: gameBoardCells)
-        {
-            for (GameBoardCell cell: cells)
-            {
-                if(cell.isCellFree())
-                {
+    boolean isMovesLeft() {
+        for (GameBoardCell[] cells : gameBoardCells) {
+            for (GameBoardCell cell : cells) {
+                if (cell.isCellFree()) {
                     return true;
                 }
             }
@@ -108,51 +184,44 @@ gameBoardCells[0] = new GameBoardCell[3];
         return false;
     }
 
-    int evaluate()
-    {
+    int evaluate() {
         // Checking for Rows for X or O victory.
-        for (int row = 0; row<3; row++)
-        {
-            if (gameBoardCells[row][0].getCellPiece()==gameBoardCells[row][1].getCellPiece() &&
-                    gameBoardCells[row][1].getCellPiece()==gameBoardCells[row][2].getCellPiece())
-            {
-                if (gameBoardCells[row][0].getCellPiece()==AIpiece)
+        for (int row = 0; row < 3; row++) {
+            if (gameBoardCells[row][0].getCellPiece() == gameBoardCells[row][1].getCellPiece() &&
+                    gameBoardCells[row][1].getCellPiece() == gameBoardCells[row][2].getCellPiece()) {
+                if (gameBoardCells[row][0].getCellPiece() == AIpiece)
                     return +10;
-                else if (gameBoardCells[row][0].getCellPiece()==userPiece)
+                else if (gameBoardCells[row][0].getCellPiece() == userPiece)
                     return -10;
             }
         }
 
         // Checking for Columns for X or O victory.
-        for (int col = 0; col<3; col++)
-        {
-            if (gameBoardCells[0][col].getCellPiece()==gameBoardCells[1][col].getCellPiece() &&
-                    gameBoardCells[1][col].getCellPiece()==gameBoardCells[2][col].getCellPiece())
-            {
-                if (gameBoardCells[0][col].getCellPiece()==AIpiece)
+        for (int col = 0; col < 3; col++) {
+            if (gameBoardCells[0][col].getCellPiece() == gameBoardCells[1][col].getCellPiece() &&
+                    gameBoardCells[1][col].getCellPiece() == gameBoardCells[2][col].getCellPiece()) {
+                if (gameBoardCells[0][col].getCellPiece() == AIpiece)
                     return +10;
 
-                else if (gameBoardCells[0][col].getCellPiece()==userPiece)
+                else if (gameBoardCells[0][col].getCellPiece() == userPiece)
                     return -10;
             }
         }
 
         // Checking for Diagonals for X or O victory.
-        if (gameBoardCells[0][0].getCellPiece()==gameBoardCells[1][1].getCellPiece()
-                && gameBoardCells[1][1].getCellPiece()==gameBoardCells[2][2].getCellPiece())
-        {
-            if (gameBoardCells[0][0].getCellPiece()==AIpiece)
+        if (gameBoardCells[0][0].getCellPiece() == gameBoardCells[1][1].getCellPiece()
+                && gameBoardCells[1][1].getCellPiece() == gameBoardCells[2][2].getCellPiece()) {
+            if (gameBoardCells[0][0].getCellPiece() == AIpiece)
                 return +10;
-            else if (gameBoardCells[0][0].getCellPiece()==userPiece)
+            else if (gameBoardCells[0][0].getCellPiece() == userPiece)
                 return -10;
         }
 
-        if (gameBoardCells[0][2].getCellPiece()==gameBoardCells[1][1].getCellPiece()
-                && gameBoardCells[1][1].getCellPiece()==gameBoardCells[2][0].getCellPiece())
-        {
-            if (gameBoardCells[0][2].getCellPiece()==AIpiece)
+        if (gameBoardCells[0][2].getCellPiece() == gameBoardCells[1][1].getCellPiece()
+                && gameBoardCells[1][1].getCellPiece() == gameBoardCells[2][0].getCellPiece()) {
+            if (gameBoardCells[0][2].getCellPiece() == AIpiece)
                 return +10;
-            else if (gameBoardCells[0][2].getCellPiece()==userPiece)
+            else if (gameBoardCells[0][2].getCellPiece() == userPiece)
                 return -10;
         }
 
@@ -163,8 +232,7 @@ gameBoardCells[0] = new GameBoardCell[3];
     // This is the minimax function. It considers all
 // the possible ways the game can go and returns
 // the value of the board
-    int minimax(int depth, boolean isMax)
-    {
+    int minimax(int depth, boolean isMax) {
         int score = evaluate();
 
         // If Maximizer has won the game return his/her
@@ -179,29 +247,25 @@ gameBoardCells[0] = new GameBoardCell[3];
 
         // If there are no more moves and no winner then
         // it is a tie
-        if (isMovesLeft()==false)
+        if (isMovesLeft() == false)
             return 0;
 
         // If this maximizer's move
-        if (isMax)
-        {
+        if (isMax) {
             int best = -1000;
 
             // Traverse all cells
-            for (int i = 0; i<3; i++)
-            {
-                for (int j = 0; j<3; j++)
-                {
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
                     // Check if cell is empty
-                    if (gameBoardCells[i][j].isCellFree())
-                    {
+                    if (gameBoardCells[i][j].isCellFree()) {
                         // Make the move
                         gameBoardCells[i][j].setCellPiece(AIpiece);
 
                         // Call minimax recursively and choose
                         // the maximum value
-                        best = max( best,
-                                minimax(depth+1, !isMax) );
+                        best = max(best,
+                                minimax(depth + 1, !isMax));
 
                         // Undo the move
                         gameBoardCells[i][j].setCellPiece(GameBoardCell.PIECE_BLANK);
@@ -212,25 +276,21 @@ gameBoardCells[0] = new GameBoardCell[3];
         }
 
         // If this minimizer's move
-        else
-        {
+        else {
             int best = 1000;
 
             // Traverse all cells
-            for (int i = 0; i<3; i++)
-            {
-                for (int j = 0; j<3; j++)
-                {
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
                     // Check if cell is empty
-                    if (gameBoardCells[i][j].isCellFree())
-                    {
+                    if (gameBoardCells[i][j].isCellFree()) {
                         // Make the move
                         gameBoardCells[i][j].setCellPiece(userPiece);
 
                         // Call minimax recursively and choose
                         // the minimum value
                         best = min(best,
-                                minimax(depth+1, !isMax));
+                                minimax(depth + 1, !isMax));
 
                         // Undo the move
                         gameBoardCells[i][j].setCellPiece(GameBoardCell.PIECE_BLANK);
@@ -252,19 +312,16 @@ gameBoardCells[0] = new GameBoardCell[3];
         // Traverse all cells, evaluate minimax function for
         // all empty cells. And return the cell with optimal
         // value.
-        for (int i = 0; i<3; i++)
-        {
-            for (int j = 0; j<3; j++)
-            {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
                 // Check if cell is empty
-                if (gameBoardCells[i][j].isCellFree())
-                {
+                if (gameBoardCells[i][j].isCellFree()) {
                     // Make the move
                     gameBoardCells[i][j].setCellPiece(AIpiece);
 
                     // compute evaluation function for this
                     // move.
-                    int moveVal = minimax( 0, false);
+                    int moveVal = minimax(0, false);
 
                     // Undo the move
                     gameBoardCells[i][j].setCellPiece(GameBoardCell.PIECE_BLANK);
@@ -272,8 +329,7 @@ gameBoardCells[0] = new GameBoardCell[3];
                     // If the value of the current move is
                     // more than the best value, then update
                     // best/
-                    if (moveVal > bestVal)
-                    {
+                    if (moveVal > bestVal) {
                         bestMove.setX(i);
                         bestMove.setY(j);
                         bestVal = moveVal;
@@ -282,7 +338,7 @@ gameBoardCells[0] = new GameBoardCell[3];
             }
         }
 
-        System.out.println("The value of the best Move is : "+
+        System.out.println("The value of the best Move is : " +
                 bestVal);
 
         return bestMove;

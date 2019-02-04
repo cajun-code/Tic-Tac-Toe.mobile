@@ -17,11 +17,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private char userPerice;
-
-    public GameBoard gameBoard = new GameBoard();
-    TextView textViewInfo;
+GameBoard gameBoard = new GameBoard();
+    TextView textViewInfo;;
     RadioGroup radioGroup;
+    RadioButton radioButtonX;
+    RadioButton radioButtonO;
+    private char userPerice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         // Set x as default
 
         radioGroup.clearCheck();
-        final RadioButton radioButtonX = (RadioButton)radioGroup.findViewById(R.id.radioButtonX);
-        final RadioButton radioButtonO = (RadioButton)radioGroup.findViewById(R.id.radioButtonO);
+        radioButtonX = (RadioButton)radioGroup.findViewById(R.id.radioButtonX);
+        radioButtonO = (RadioButton)radioGroup.findViewById(R.id.radioButtonO);
 
         radioButtonX.setChecked(true);
         radioButtonX.setTextColor(getResources().getColor(R.color.colorAccent));
@@ -54,13 +55,13 @@ public class MainActivity extends AppCompatActivity {
                 if(checkedRB == radioButtonX)
                 {
                     gameBoard.setUserPiece(GameBoardCell.PIECE_X);
-                    gameBoard.setAIpiece(GameBoardCell.PIECE_O);
+                 //   gameBoard.setAIpiece(GameBoardCell.PIECE_O);
                     radioButtonO.setTextColor(getResources().getColor(R.color.colorBlack));
 
                 }
                 else {
                     gameBoard.setUserPiece(GameBoardCell.PIECE_O);
-                    gameBoard.setAIpiece(GameBoardCell.PIECE_X);
+               //     gameBoard.setAIpiece(GameBoardCell.PIECE_X);
                     radioButtonX.setTextColor(getResources().getColor(R.color.colorBlack));
                 }
 
@@ -124,39 +125,55 @@ public class MainActivity extends AppCompatActivity {
                         {
                             GameBoardCell clickedCell = gameBoard.getGameBoardCells()[index/3][index%3];
                             if (clickedCell.isCellFree()){
-                                textView.setText(gameBoard.getUserPiece());
-                                clickedCell.setCellPiece(gameBoard.getUserPiece());
-                                clickedCell.getCellView().setText(gameBoard.getUserPiece());
+//                                textView.setText(gameBoard.getUserPiece());
+//                               clickedCell.setCellPiece(gameBoard.getUserPiece());
+//                                clickedCell.getCellView().setText(gameBoard.getUserPiece());
+                                clickedCell.writeToCell(gameBoard.getUserPiece());
 
                                switch( gameBoard.evaluate()) {
                                    case 10:
                                        //Ai win
+                                       gameBoard.setGameActive(false);
+                                       gameBoard.setGameSuspended(true);
+                                       setTextViewInfo("Your piece is "+ gameBoard.getUserPiece() + ". The Machine Has Win");
                                        Toast toast = Toast.makeText(getApplicationContext(),
                                                "The Machine has win!",
                                                Toast.LENGTH_LONG);
 
                                        toast.show();
+                                       break;
                                    case -10:
                                        //Human Win
+                                       gameBoard.setGameActive(false);
+                                       gameBoard.setGameSuspended(true);
+                                       setTextViewInfo("Your piece is "+ gameBoard.getUserPiece() + ". You Win");
                                        Toast toastLose = Toast.makeText(getApplicationContext(),
-                                               "The Machine has win!",
+                                               "The user has win!",
                                                Toast.LENGTH_LONG);
 
                                        toastLose.show();
+                                       break;
 
                                    case 0:
                                        //if there is no move left there is a tie, call AI
+
                                        if (!gameBoard.isMovesLeft()) {
+                                           gameBoard.setGameActive(false);
+                                           gameBoard.setGameSuspended(true);
+                                           setTextViewInfo("Your piece is "+ gameBoard.getUserPiece() + ". The Game Has Tied");
+
                                            Toast toastTie = Toast.makeText(getApplicationContext(),
-                                                   "The Machine has win!",
+                                                   "The Game is Tied!",
                                                    Toast.LENGTH_LONG);
 
                                            toastTie.show();
                                        } else {
                                            AIMove(textViewInfo);
                                        }
+                                       break;
                                    default:
                                        System.out.println("default game eval, you are not suppose to be here");
+                                       break;
 
                                }
                             }
@@ -165,54 +182,102 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         }
-
-
-        //set click listener
-
-
     }
+@Override
+    protected void onSaveInstanceState(Bundle outState)
+    {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("isGameActive", gameBoard.isGameActive());
+        outState.putBoolean("isGameSuspended", gameBoard.isGameSuspended());
+        outState.putCharSequence("userPiece", gameBoard.getUserPiece());
+        outState.putCharSequence("boardState", gameBoard.getBoardState());
+        outState.putCharSequence("info",getTextViewInfo());
+    }
+@Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState)
+    {
+        super.onRestoreInstanceState(savedInstanceState);
+        gameBoard.setGameActive(savedInstanceState.getBoolean("isGameActive"));
+        gameBoard.setGameSuspended(savedInstanceState.getBoolean("isGameSuspended"));
+        gameBoard.setUserPiece(savedInstanceState.getString("userPerice"));
+        setTextViewInfo(savedInstanceState.getString("info"));
+
+        if(savedInstanceState.getBoolean("isGameActive")||savedInstanceState.getBoolean("isGameSuspended")) {
+            radioButtonO.setEnabled(false);
+            radioButtonX.setEnabled(false);
+            String temp = savedInstanceState.getString("boardState");
+
+
+            gameBoard.restoreBoard(savedInstanceState.getString("boardState"));
+        }
+        else
+        {
+            radioButtonO.setEnabled(true);
+            radioButtonX.setEnabled(true);
+        }
+    }
+
     public void enableRadioGroup(boolean bool)
     {
         radioGroup.setEnabled(bool);
     }
+
+    public String getTextViewInfo()
+    {
+       return textViewInfo.getText().toString();
+    }
+
     public void setTextViewInfo(String str)
     {
         textViewInfo.setText(str);
     }
-    public void AIMove(TextView view)
+
+    public void AIMove( TextView view)
     {
         // calcualte the move,
         Move bestMove = gameBoard.findBestMove();
-        // set text
-        gameBoard.getGameBoardCells()[bestMove.getX()][bestMove.getY()].setCellPiece(gameBoard.getAIpiece());
-        gameBoard.getGameBoardCells()[bestMove.getX()][bestMove.getY()].getCellView().setText(gameBoard.getAIpiece());
+        // write to cell
+        gameBoard.getGameBoardCells()[bestMove.getX()][bestMove.getY()].writeToCell(gameBoard.getAIpiece());
+    //    gameBoard.getGameBoardCells()[bestMove.getX()][bestMove.getY()].setCellPiece(gameBoard.getAIpiece());
+    //    gameBoard.getGameBoardCells()[bestMove.getX()][bestMove.getY()].getCellView().setText(gameBoard.getAIpiece());
 
         // eval the board
         switch( gameBoard.evaluate())
         {
             case 10:
                 //Ai win
-                enableRadioGroup(true);
+                gameBoard.setGameActive(false);
+                gameBoard.setGameSuspended(true);
+                setTextViewInfo("Your piece is "+ gameBoard.getUserPiece() + ". The Machine Has Win!");
+
                 Toast toast = Toast.makeText(getApplicationContext(),
-                        "The Machine has win!",
+                        "The Machine Has win!",
                         Toast.LENGTH_LONG);
 
                 toast.show();
+                break;
             case -10:
                 //Human Win
-                enableRadioGroup(true);
+                gameBoard.setGameActive(false);
+                gameBoard.setGameSuspended(true);
+                setTextViewInfo("Your piece is "+ gameBoard.getUserPiece() + ". You Win!");
+
                 Toast toastLose = Toast.makeText(getApplicationContext(),
-                        "The Machine has win!",
+                        "The user Has win!",
                         Toast.LENGTH_LONG);
 
                 toastLose.show();
+                break;
 
             case 0:
                 //if there is no move left there is a tie,
                 if(!gameBoard.isMovesLeft()) {
-                    enableRadioGroup(true);
+                    gameBoard.setGameActive(false);
+                    gameBoard.setGameSuspended(true);
+                    setTextViewInfo("Your piece is "+ gameBoard.getUserPiece() + ". The Game is Tied!");
+
                     Toast toastTie = Toast.makeText(getApplicationContext(),
-                            "The Machine has win!",
+                            "It is a tie!",
                             Toast.LENGTH_LONG);
 
                     toastTie.show();
@@ -222,10 +287,11 @@ public class MainActivity extends AppCompatActivity {
                     // Tell user to move
                     view.setText("Your Move! your piece is " + gameBoard.getUserPiece());
                 }
+                break;
             default:
                 System.out.println("default game eval, you are not suppose to be here after AI move");
+                break;
 
         }
-        // call to inform user's turn
     }
 }
