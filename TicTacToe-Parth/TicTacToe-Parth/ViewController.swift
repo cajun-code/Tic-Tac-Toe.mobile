@@ -50,6 +50,7 @@ class ViewController: UIViewController {
         for tag in 1...9 {
             let button = view.viewWithTag(tag) as! UIButton
             button.setImage(nil, for: .normal)
+            button.isEnabled = true
         }
     }
     
@@ -66,6 +67,11 @@ class ViewController: UIViewController {
                 }
                 gameIsActive = false
                 playAgainButton.isHidden = false
+                for tag in 1...9 {
+                    let button = view.viewWithTag(tag) as! UIButton
+                    button.isEnabled = false
+                }
+                break
             } else {
                 gameIsActive = false
                 for i in gameBoard {
@@ -83,7 +89,7 @@ class ViewController: UIViewController {
         }
     }
     
-    // MARK: - AI check from worst to best possible move
+    // MARK: - AI will check from worst to best possible move
     func AIMove() {
         var possibleAIMove: Int!
         
