@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class GameViewController: UIViewController {
 
     // MARK: - Properties
     // MARK: - gameBoard -> (-1) for Empty Space, 1 for User Space, 0 for AI Space
@@ -41,16 +41,13 @@ class ViewController: UIViewController {
     }
     
     @IBAction func playAgainButtonPressed(_ sender: Any) {
-        gameBoard = [-1, -1, -1, -1, -1, -1, -1, -1, -1]
-        gameIsActive = true
-        
         statusLabel.text = "You go first"
         playAgainButton.isHidden = true
-        
+        gameBoard = [-1, -1, -1, -1, -1, -1, -1, -1, -1]
+        gameIsActive = true
         for tag in 1...9 {
             let button = view.viewWithTag(tag) as! UIButton
             button.setImage(nil, for: .normal)
-            button.isEnabled = true
         }
     }
     
@@ -61,15 +58,9 @@ class ViewController: UIViewController {
                 gameBoard[pattern[0]] == gameBoard[pattern[1]] &&
                 gameBoard[pattern[1]] == gameBoard[pattern[2]] {
                 if gameBoard[pattern[0]] == 1 {
-                    statusLabel.text = "User 'X' Win"
+                    displayResult(status: "User 'X' Win")
                 } else {
-                    statusLabel.text = "Computer 'O' Win"
-                }
-                gameIsActive = false
-                playAgainButton.isHidden = false
-                for tag in 1...9 {
-                    let button = view.viewWithTag(tag) as! UIButton
-                    button.isEnabled = false
+                    displayResult(status: "Computer 'O' Win")
                 }
                 break
             } else {
@@ -81,12 +72,18 @@ class ViewController: UIViewController {
                     }
                 }
                 if gameIsActive == false {
-                    statusLabel.text = "It was a draw"
-                    playAgainButton.isHidden = false
+                    displayResult(status: "It was a draw")
                     break
                 }
             }
         }
+    }
+    
+    // MARK: - Show game result and playAgain button
+    func displayResult(status: String) {
+            statusLabel.text = status
+            playAgainButton.isHidden = false
+            gameIsActive = false
     }
     
     // MARK: - AI will check from worst to best possible move
@@ -124,20 +121,24 @@ class ViewController: UIViewController {
         }
         
         // MARK: - Block User win Move
-        if let blockPossible = blockUserWinMove() {
+        let user = 1
+        if let blockPossible = twoInRow(forPlayer: user) {
             possibleAIMove = blockPossible
         }
         
         // MARK: - Check AI win possibility
-        if let winPossible = checkAIWinMove() {
+        let computer = 0
+        if let winPossible = twoInRow(forPlayer: computer) {
             possibleAIMove = winPossible
         }
         
         // MARK: Find AI possible move, set image and check for win
         if let _ = possibleAIMove {
             gameBoard[possibleAIMove] = 0
-            let button = view.viewWithTag(possibleAIMove + 1) as! UIButton
-            button.setImage(UIImage(named: "O.png"), for: .normal)
+            let _ = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { _ in
+                let button = self.view.viewWithTag(possibleAIMove + 1) as! UIButton
+                button.setImage(UIImage(named: "O.png"), for: .normal)
+            }
             statusLabel.text = "Continue..."
             checkForWin()
         }
@@ -145,7 +146,7 @@ class ViewController: UIViewController {
 }
 
 // MARK: - FOR ALL HELPER METHODS OF AI Move
-extension ViewController {
+extension GameViewController {
     
     func checkForSides() -> Int? {
         if gameBoard[1] == -1 {
@@ -283,30 +284,21 @@ extension ViewController {
         return nil
     }
     
-    func blockUserWinMove() -> Int? {
+    func twoInRow(forPlayer: Int) -> Int? {
         for pattern in winPatterns {
-            if (gameBoard[pattern[0]] == 1 && gameBoard[pattern[1]] == 1 && gameBoard[pattern[2]] == -1) {
+            if (gameBoard[pattern[0]] == forPlayer &&
+                gameBoard[pattern[1]] == forPlayer &&
+                gameBoard[pattern[2]] == -1) {
                 return pattern[2]
             }
-            if (gameBoard[pattern[0]] == 1 && gameBoard[pattern[2]] == 1 && gameBoard[pattern[1]] == -1) {
+            if (gameBoard[pattern[0]] == forPlayer &&
+                gameBoard[pattern[2]] == forPlayer &&
+                gameBoard[pattern[1]] == -1) {
                 return pattern[1]
             }
-            if (gameBoard[pattern[1]] == 1 && gameBoard[pattern[2]] == 1 && gameBoard[pattern[0]] == -1) {
-                return pattern[0]
-            }
-        }
-        return nil
-    }
-    
-    func checkAIWinMove() -> Int? {
-        for pattern in winPatterns {
-            if (gameBoard[pattern[0]] == 0 && gameBoard[pattern[1]] == 0 && gameBoard[pattern[2]] == -1) {
-                return pattern[2]
-            }
-            if (gameBoard[pattern[0]] == 0 && gameBoard[pattern[2]] == 0 && gameBoard[pattern[1]] == -1) {
-                return pattern[1]
-            }
-            if (gameBoard[pattern[1]] == 0 && gameBoard[pattern[2]] == 0 && gameBoard[pattern[0]] == -1) {
+            if (gameBoard[pattern[1]] == forPlayer &&
+                gameBoard[pattern[2]] == forPlayer &&
+                gameBoard[pattern[0]] == -1) {
                 return pattern[0]
             }
         }
