@@ -1,6 +1,21 @@
 <resources>
-    <string name="app_name">CodingTest</string>
+    <string name="app_name">Fiserv CodingTest - Lasley</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Game_PlayAgain">Play Again?</string>
+    <string name="Game_Menu">Menu</string>
+    <string name="Text_Settings">Settings</string>
+    <string name="Game_Active_You">You</string>
+    <string name="Game_Active_AI">AI</string>
+    <string name="Game_Active_AIMany">AI #%1$d</string>
+    <string name="Game_Active_PlayerMany">Player #%1$d</string>
+    <string name="Game_Text_Turn">Turn:</string>
+
+    <string name="Game_End_Winner">%1$s Won</string>
+    <string name="Game_End_Tie">Tie</string>
+    <string name="Game_ScoreChart">(Player) %1$d : %2$d (AI)</string>
+    <string name="Game_exitgame">Exit current game?</string>
+    <string name="Game_ExitGame_msg">Are you sure? The current game progress will be lost.</string>
+    <string name="Prompt_Yes">YES</string>
+    <string name="Prompt_No">No</string>
 </resources>

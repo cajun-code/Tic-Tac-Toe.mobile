@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Fragments.MainMenu">
+
+    <TextView
+            android:text="Play as: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3" android:textSize="18sp"
+            android:textColor="@android:color/black" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="32dp" android:layout_marginTop="140dp"
+            app:layout_constraintTop_toTopOf="parent"/>
+    <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/radioGroup"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@+id/textView3"
+            app:layout_constraintBottom_toBottomOf="@+id/textView3" app:layout_constraintTop_toTopOf="@+id/textView3">
+        <RadioButton
+                android:layout_height="48dp" android:id="@+id/radio_x"
+                android:background="@drawable/settings_selector_radio"
+                android:button="@null" android:checked="true"
+                android:layout_width="48dp" android:text="X"
+                android:textSize="30sp" android:textStyle="bold" android:fontFamily="casual"
+                android:textAlignment="center"/>
+        <RadioButton
+                android:layout_width="48dp"
+                android:layout_height="48dp" android:id="@+id/radio_o"
+                android:button="@null"
+                android:background="@drawable/settings_selector_radio" android:checked="false" android:text="O"
+                android:textSize="30sp" android:textStyle="bold" android:fontFamily="casual"
+                android:textAlignment="center"/>
+    </RadioGroup>
+    <Button
+            android:text="Start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnStart" android:textSize="40sp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:layout_marginBottom="50dp" app:layout_constraintBottom_toBottomOf="parent"/>
+    <TextView
+            android:text="Board Size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView4" android:textSize="18sp"
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toStartOf="@+id/textView3" android:layout_marginTop="45dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"/>
+    <TextView
+            android:text="3x3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_bSize"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/textView4"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView4" app:layout_constraintTop_toTopOf="@+id/textView4"/>
+    <SeekBar
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:max="3"
+            android:progress="0"
+            android:id="@+id/seek_BSize"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="24dp"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:layout_constraintStart_toStartOf="@+id/textView4"/>
+    <TextView
+            android:text="Winning length"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView5" android:textColor="@android:color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/textView4" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/seek_BSize"/>
+    <SeekBar
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:max="1"
+            android:progress="1"
+            android:id="@+id/seek_WinSize"
+            android:layout_marginEnd="24dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/textView5"
+            app:layout_constraintStart_toStartOf="@+id/textView5"/>
+    <TextView
+            android:text="3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_winSize"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/textView5" android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="@+id/textView5" app:layout_constraintBottom_toBottomOf="@+id/textView5"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
