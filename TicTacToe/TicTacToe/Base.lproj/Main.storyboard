@@ -61,7 +61,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.91062103081615065" green="1" blue="0.983196771683015" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.61875257210000001" green="0.75519621329999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="RTR-z4-QpY" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="7AW-NV-fs1"/>
                             <constraint firstItem="TZJ-uc-b3p" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="9Ue-wT-0kt"/>
@@ -209,7 +209,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.91062103080000001" green="1" blue="0.98319677169999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.61875257210000001" green="0.75519621329999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="EFb-Ir-lVY" firstAttribute="centerX" secondItem="m5m-Mq-7lL" secondAttribute="centerX" id="3vS-dF-O7a"/>
                             <constraint firstItem="MfD-Pw-ELG" firstAttribute="centerX" secondItem="m5m-Mq-7lL" secondAttribute="centerX" id="4iJ-kW-6GY"/>

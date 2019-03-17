@@ -16,7 +16,7 @@ extension UIButton {
         pulse.fromValue = 0.95
         pulse.toValue = 1.0
         pulse.autoreverses = true
-        pulse.repeatCount = 4
+        pulse.repeatCount = 2
         pulse.initialVelocity = 0.5//0.5
         pulse.damping = 1.0
         
