@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kwR-as-XgL">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="677"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tic Tac Toe " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rcg-gH-6yU">
+                                        <rect key="frame" x="37.5" y="281" width="300" height="135"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.91062103080000001" green="1" blue="0.98319677169999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstItem="Rcg-gH-6yU" firstAttribute="centerY" secondItem="oOa-Nt-Hhw" secondAttribute="centerY" id="0rq-fu-Nli"/>
+                                    <constraint firstItem="Rcg-gH-6yU" firstAttribute="width" secondItem="kwR-as-XgL" secondAttribute="width" multiplier="0.8" id="6rv-Vy-yta"/>
+                                    <constraint firstItem="Rcg-gH-6yU" firstAttribute="height" secondItem="kwR-as-XgL" secondAttribute="height" multiplier="0.2" id="SNd-9z-h5t"/>
+                                    <constraint firstItem="Rcg-gH-6yU" firstAttribute="centerX" secondItem="oOa-Nt-Hhw" secondAttribute="centerX" id="jCf-hx-RjU"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="oOa-Nt-Hhw"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="kwR-as-XgL" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-5" id="8jh-pi-kHr"/>
+                            <constraint firstItem="kwR-as-XgL" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="SUS-70-HoD"/>
+                            <constraint firstItem="kwR-as-XgL" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="VGB-IL-d7R"/>
+                            <constraint firstItem="kwR-as-XgL" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" constant="10" id="sGs-RS-XGx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+        </scene>
+    </scenes>
+</document>
