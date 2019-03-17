@@ -16,7 +16,11 @@ class AIEngine: NSObject {
 
 extension AIEngine{
     
-    // Function getting called from GameController when computers turn
+    /**
+     * Function getting called from GameController when computer has to make a move
+     * @param player        the player that is calling the function. Default to 2 in this function
+     * @param board         current TicTacToe board to play
+     */
     func getAIsMove(board:Board, player:Int) -> Int {
         if board.getMove(atPosition: 4) == 0 {
             return 4
@@ -30,7 +34,11 @@ extension AIEngine{
     
     }
     
-    // Function to count score and update ot minmax algorithm
+    /**
+     * Function to count score and update to minmax algorithm
+     * @param bestMove the best move that the computer has as of now
+     * @param gameState  - current TicTacToe board to play
+     */
     func countScore(gameState:Board,bestMove: Int) ->[Int] {
         if board.checkIfGameIsWon(byUser: 2, gameState:gameState) {
             return [1,bestMove]
@@ -42,7 +50,15 @@ extension AIEngine{
     }
     
     
-    // Min Max Algoritm with alpha beta pruning. Core algorithm to predict next correct move of a computer
+    
+    /**
+     * Min Max Algoritm with alpha beta pruning. Core algorithm to predict next correct move of a computer
+     * @param bestMove the best move that the computer has as of now
+     * @param currentGameState  - current TicTacToe board to play
+     * @param isMaximizingPLayer - Is computer or user?
+     * @param alpha - alpha value
+     * @param bets - beta value
+     */
     func miniMaxUpdated(currentGameState:Board, isMaximizingPLayer:Bool, alpha:Int,beta:Int) -> [Int] {
         var alpha = alpha
         var beta = beta
@@ -96,7 +112,10 @@ extension AIEngine{
     }
     
     
-    // Function to chekc if there are chances for a game to end. Will check if any row has 2 valid value of a user
+    /**
+     * Function to chekc if there are chances for a game to end. Will check if any row has 2 valid value of a user
+     * @param board  - current TicTacToe board to play
+     */
     func checkForGameEndChance(board:Board) -> (Bool,Int) {
         var willGameEnd:Bool = false
         var correctMove:Int = 1

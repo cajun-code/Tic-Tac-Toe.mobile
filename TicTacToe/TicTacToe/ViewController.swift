@@ -33,6 +33,7 @@ class ViewController: UIViewController {
         oButton.pulsate()
         xButton.pulsate()
     }
+    
     // Welcome animation to display when user launches screen. This is created by Lotte framework using cocoapods
     func startWelcomeAnimation(){
         welcomeAnimationView.setAnimation(named:"lottie_welcome.json")
@@ -41,7 +42,8 @@ class ViewController: UIViewController {
     }
     
     
-    // Segue to Game Controller based on the button selected. We will pass the button flag so that we will know the user selected option
+    /** Segue to Game Controller based on the button selected. We will pass the button flag so that we will know the user selected option
+    */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         welcomeAnimationView.stop()
         if segue.identifier == "oButtonSegue"{
@@ -54,8 +56,6 @@ class ViewController: UIViewController {
             }
         }
     }
-    
-    
   
 }
 

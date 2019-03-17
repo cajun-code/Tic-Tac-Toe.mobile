@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="POE-Us-ZH6">
-    <device id="retina5_9" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,30 +15,30 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TicTacToe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TZJ-uc-b3p" customClass="LOTAnimationView">
-                                <rect key="frame" x="37.666666666666657" y="108" width="300" height="300"/>
+                                <rect key="frame" x="32" y="84" width="256" height="256"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="TZJ-uc-b3p" secondAttribute="height" multiplier="1:1" id="Hc7-kK-u69"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Choose your Symbol" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1SR-4c-yWL">
-                                <rect key="frame" x="37.666666666666657" y="433" width="300" height="40"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Choose your Symbol" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1SR-4c-yWL">
+                                <rect key="frame" x="16" y="365" width="288" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="WOb-Ys-XXq"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="RTR-z4-QpY">
-                                <rect key="frame" x="56.333333333333343" y="498.00000000000006" width="262.33333333333326" height="118.66666666666669"/>
+                                <rect key="frame" x="48" y="430" width="224" height="99.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kxv-1D-ugU">
-                                        <rect key="frame" x="0.0" y="0.0" width="118.66666666666667" height="118.66666666666667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="99.5" height="99.5"/>
                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Kxv-1D-ugU" secondAttribute="height" multiplier="1:1" id="9ky-Wc-WZu"/>
@@ -50,7 +50,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbX-Zs-vLY">
-                                        <rect key="frame" x="143.66666666666666" y="0.0" width="118.66666666666666" height="118.66666666666667"/>
+                                        <rect key="frame" x="124.5" y="0.0" width="99.5" height="99.5"/>
                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="75"/>
                                         <state key="normal" title="X"/>
@@ -67,7 +67,7 @@
                             <constraint firstItem="TZJ-uc-b3p" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="9Ue-wT-0kt"/>
                             <constraint firstItem="1SR-4c-yWL" firstAttribute="top" secondItem="TZJ-uc-b3p" secondAttribute="bottom" constant="25" id="GST-X6-gkV"/>
                             <constraint firstItem="1SR-4c-yWL" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Man-04-Nf2"/>
-                            <constraint firstItem="1SR-4c-yWL" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="ROk-UG-0Cm"/>
+                            <constraint firstItem="1SR-4c-yWL" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.9" id="ROk-UG-0Cm"/>
                             <constraint firstItem="TZJ-uc-b3p" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="XRR-XS-wOh"/>
                             <constraint firstItem="TZJ-uc-b3p" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="o4v-yv-FgA"/>
                             <constraint firstItem="RTR-z4-QpY" firstAttribute="top" secondItem="1SR-4c-yWL" secondAttribute="bottom" constant="25" id="sMT-Z1-led"/>
@@ -91,34 +91,34 @@
             <objects>
                 <viewController id="X9j-sn-Rn4" customClass="GameViewController" customModule="TicTacToe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AlQ-oT-Wxa">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rzq-Dc-72Z">
-                                <rect key="frame" x="37.666666666666657" y="283" width="300" height="300"/>
+                                <rect key="frame" x="32" y="188" width="256" height="256"/>
                                 <subviews>
                                     <stackView opaque="NO" tag="11" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="lFv-lT-6Fa">
-                                        <rect key="frame" x="10" y="10" width="280" height="280"/>
+                                        <rect key="frame" x="10" y="10" width="236" height="236"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="BYc-JE-Md4">
-                                                <rect key="frame" x="0.0" y="0.0" width="280" height="86.666666666666671"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="236" height="72"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IPs-zY-Eas" userLabel="Button1">
-                                                        <rect key="frame" x="0.0" y="0.0" width="86.666666666666671" height="86.666666666666671"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="72" height="72"/>
                                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <connections>
                                                             <action selector="gameButtonAction:" destination="X9j-sn-Rn4" eventType="touchUpInside" id="IGZ-T3-wzY"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="56w-kP-COM" userLabel="Button3">
-                                                        <rect key="frame" x="96.666666666666686" y="0.0" width="86.666666666666686" height="86.666666666666671"/>
+                                                        <rect key="frame" x="82" y="0.0" width="72" height="72"/>
                                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <connections>
                                                             <action selector="gameButtonAction:" destination="X9j-sn-Rn4" eventType="touchUpInside" id="qBM-Hz-sFy"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uhG-n4-LBL" userLabel="Button4">
-                                                        <rect key="frame" x="193.33333333333334" y="0.0" width="86.666666666666657" height="86.666666666666671"/>
+                                                        <rect key="frame" x="164" y="0.0" width="72" height="72"/>
                                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <connections>
                                                             <action selector="gameButtonAction:" destination="X9j-sn-Rn4" eventType="touchUpInside" id="2LZ-i6-qXw"/>
@@ -127,24 +127,24 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6LV-iD-g3s">
-                                                <rect key="frame" x="0.0" y="96.666666666666686" width="280" height="86.666666666666686"/>
+                                                <rect key="frame" x="0.0" y="82" width="236" height="72"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RlX-K1-Cg5" userLabel="Button2">
-                                                        <rect key="frame" x="0.0" y="0.0" width="86.666666666666671" height="86.666666666666671"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="72" height="72"/>
                                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <connections>
                                                             <action selector="gameButtonAction:" destination="X9j-sn-Rn4" eventType="touchUpInside" id="1N9-1w-jsO"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w5I-QM-naK" userLabel="Button5">
-                                                        <rect key="frame" x="96.666666666666686" y="0.0" width="86.666666666666686" height="86.666666666666671"/>
+                                                        <rect key="frame" x="82" y="0.0" width="72" height="72"/>
                                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <connections>
                                                             <action selector="gameButtonAction:" destination="X9j-sn-Rn4" eventType="touchUpInside" id="r6i-Z7-9qH"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7n-wy-o4P" userLabel="Button6">
-                                                        <rect key="frame" x="193.33333333333334" y="0.0" width="86.666666666666657" height="86.666666666666671"/>
+                                                        <rect key="frame" x="164" y="0.0" width="72" height="72"/>
                                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <connections>
                                                             <action selector="gameButtonAction:" destination="X9j-sn-Rn4" eventType="touchUpInside" id="Ihb-K0-5Pn"/>
@@ -153,24 +153,24 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="i1M-XQ-jZ7">
-                                                <rect key="frame" x="0.0" y="193.33333333333331" width="280" height="86.666666666666686"/>
+                                                <rect key="frame" x="0.0" y="164" width="236" height="72"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E8A-La-qvm" userLabel="Button7">
-                                                        <rect key="frame" x="0.0" y="0.0" width="86.666666666666671" height="86.666666666666671"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="72" height="72"/>
                                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <connections>
                                                             <action selector="gameButtonAction:" destination="X9j-sn-Rn4" eventType="touchUpInside" id="MIR-ET-tbs"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JLv-Oc-3mV" userLabel="Button8">
-                                                        <rect key="frame" x="96.666666666666686" y="0.0" width="86.666666666666686" height="86.666666666666671"/>
+                                                        <rect key="frame" x="82" y="0.0" width="72" height="72"/>
                                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <connections>
                                                             <action selector="gameButtonAction:" destination="X9j-sn-Rn4" eventType="touchUpInside" id="zp5-xd-Dmq"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7qA-F0-PEI" userLabel="Button9">
-                                                        <rect key="frame" x="193.33333333333334" y="0.0" width="86.666666666666657" height="86.666666666666671"/>
+                                                        <rect key="frame" x="164" y="0.0" width="72" height="72"/>
                                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <connections>
                                                             <action selector="gameButtonAction:" destination="X9j-sn-Rn4" eventType="touchUpInside" id="QcU-gs-ESI"/>
@@ -191,7 +191,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" tag="20" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Start the Game" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EFb-Ir-lVY">
-                                <rect key="frame" x="37.666666666666657" y="103" width="300" height="50"/>
+                                <rect key="frame" x="16" y="79" width="288" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="oa0-aT-2iZ"/>
                                 </constraints>
@@ -200,7 +200,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MfD-Pw-ELG">
-                                <rect key="frame" x="93.666666666666671" y="688" width="187.66666666666663" height="65"/>
+                                <rect key="frame" x="80" y="497.5" width="160" height="45.5"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <state key="normal" title="Reset"/>
@@ -219,7 +219,7 @@
                             <constraint firstItem="MfD-Pw-ELG" firstAttribute="width" secondItem="AlQ-oT-Wxa" secondAttribute="width" multiplier="0.5" id="P2u-FD-uIi"/>
                             <constraint firstItem="EFb-Ir-lVY" firstAttribute="top" secondItem="m5m-Mq-7lL" secondAttribute="top" constant="15" id="Tvg-C0-UtH"/>
                             <constraint firstItem="rzq-Dc-72Z" firstAttribute="centerX" secondItem="m5m-Mq-7lL" secondAttribute="centerX" id="lzf-N2-aIH"/>
-                            <constraint firstItem="EFb-Ir-lVY" firstAttribute="width" secondItem="AlQ-oT-Wxa" secondAttribute="width" multiplier="0.8" id="omC-Rn-uZ1"/>
+                            <constraint firstItem="EFb-Ir-lVY" firstAttribute="width" secondItem="AlQ-oT-Wxa" secondAttribute="width" multiplier="0.9" id="omC-Rn-uZ1"/>
                             <constraint firstItem="m5m-Mq-7lL" firstAttribute="bottom" secondItem="MfD-Pw-ELG" secondAttribute="bottom" constant="25" id="vd7-QI-77m"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="m5m-Mq-7lL"/>
@@ -238,7 +238,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="POE-Us-ZH6" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iAm-b9-fBT">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

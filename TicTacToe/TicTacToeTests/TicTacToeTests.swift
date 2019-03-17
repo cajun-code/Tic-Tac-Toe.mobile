@@ -42,6 +42,21 @@ class TicTacToeTests: XCTestCase {
         XCTAssertFalse(board.getMove(atPosition: 2) == 1 , "testAddMoveFunction: Test Failed 222 ")
     }
     
+    func testRemoveMoveFunction(){
+        let board = Board()
+        board.boardState = [0,1,2,1,2,0,0,0,0]
+        board.removeMove(fromPosition: 2)
+        XCTAssert(board.getMove(atPosition: 2) == 0 , "testRemoveMoveFunction: Test Failed ")
+    }
+    
+    func testCheckIfUserWon(){
+        let board = Board()
+        board.boardState = [0,1,2,1,2,2,1,1,1]
+        XCTAssertTrue(board.checkIfGameIsWonUpdated(byUser: 1, gameState: board).0, "testCheckIfUserWon: Test Passed")
+         XCTAssertFalse(board.checkIfGameIsWonUpdated(byUser: 2, gameState: board).0, "testCheckIfUserWon: Test Passed")
+        
+        }
+    
 
     func testPerformanceExample() {
         // This is an example of a performance test case.

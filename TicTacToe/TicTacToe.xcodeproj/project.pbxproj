@@ -14,9 +14,9 @@
 		391F1565223D736A001177DF /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391F1564223D736A001177DF /* UIViewExtension.swift */; };
 		391F156C223D77B4001177DF /* oicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 391F156B223D77B4001177DF /* oicon.png */; };
 		391F156E223D77B9001177DF /* xicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 391F156D223D77B9001177DF /* xicon.png */; };
-		391F1570223D843A001177DF /* 690-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 391F156F223D8439001177DF /* 690-loading.json */; };
+		391F1570223D843A001177DF /* lottie_animated spinner2.json in Resources */ = {isa = PBXBuildFile; fileRef = 391F156F223D8439001177DF /* lottie_animated spinner2.json */; };
 		391F1574223DDD3E001177DF /* lottie_welcome.json in Resources */ = {isa = PBXBuildFile; fileRef = 391F1573223DDD3E001177DF /* lottie_welcome.json */; };
-		391F1576223DDD5B001177DF /* 2466-welcome.json in Resources */ = {isa = PBXBuildFile; fileRef = 391F1575223DDD5B001177DF /* 2466-welcome.json */; };
+		391F1576223DDD5B001177DF /* lottie_animated spinner.json in Resources */ = {isa = PBXBuildFile; fileRef = 391F1575223DDD5B001177DF /* lottie_animated spinner.json */; };
 		39D68F06223D4DB700DB5DEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D68F05223D4DB700DB5DEB /* AppDelegate.swift */; };
 		39D68F08223D4DB700DB5DEB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D68F07223D4DB700DB5DEB /* ViewController.swift */; };
 		39D68F0B223D4DB700DB5DEB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39D68F09223D4DB700DB5DEB /* Main.storyboard */; };
@@ -55,9 +55,9 @@
 		391F1564223D736A001177DF /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		391F156B223D77B4001177DF /* oicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oicon.png; sourceTree = "<group>"; };
 		391F156D223D77B9001177DF /* xicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xicon.png; sourceTree = "<group>"; };
-		391F156F223D8439001177DF /* 690-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "690-loading.json"; sourceTree = "<group>"; };
+		391F156F223D8439001177DF /* lottie_animated spinner2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "lottie_animated spinner2.json"; sourceTree = "<group>"; };
 		391F1573223DDD3E001177DF /* lottie_welcome.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lottie_welcome.json; sourceTree = "<group>"; };
-		391F1575223DDD5B001177DF /* 2466-welcome.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "2466-welcome.json"; sourceTree = "<group>"; };
+		391F1575223DDD5B001177DF /* lottie_animated spinner.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "lottie_animated spinner.json"; sourceTree = "<group>"; };
 		39D68F02223D4DB700DB5DEB /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39D68F05223D4DB700DB5DEB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39D68F07223D4DB700DB5DEB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -132,10 +132,10 @@
 		391F1568223D753E001177DF /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				391F1575223DDD5B001177DF /* 2466-welcome.json */,
+				391F1575223DDD5B001177DF /* lottie_animated spinner.json */,
 				391F1573223DDD3E001177DF /* lottie_welcome.json */,
 				391F156D223D77B9001177DF /* xicon.png */,
-				391F156F223D8439001177DF /* 690-loading.json */,
+				391F156F223D8439001177DF /* lottie_animated spinner2.json */,
 				391F156B223D77B4001177DF /* oicon.png */,
 			);
 			path = Assets;
@@ -333,9 +333,9 @@
 			files = (
 				391F1574223DDD3E001177DF /* lottie_welcome.json in Resources */,
 				39D68F13223D4DB800DB5DEB /* LaunchScreen.storyboard in Resources */,
-				391F1570223D843A001177DF /* 690-loading.json in Resources */,
+				391F1570223D843A001177DF /* lottie_animated spinner2.json in Resources */,
 				39D68F10223D4DB800DB5DEB /* Assets.xcassets in Resources */,
-				391F1576223DDD5B001177DF /* 2466-welcome.json in Resources */,
+				391F1576223DDD5B001177DF /* lottie_animated spinner.json in Resources */,
 				391F156E223D77B9001177DF /* xicon.png in Resources */,
 				391F156C223D77B4001177DF /* oicon.png in Resources */,
 				39D68F0B223D4DB700DB5DEB /* Main.storyboard in Resources */,
@@ -699,6 +699,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4H27889NRC;
 				INFOPLIST_FILE = TicTacToeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -720,6 +721,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4H27889NRC;
 				INFOPLIST_FILE = TicTacToeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

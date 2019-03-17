@@ -20,11 +20,9 @@ class GameViewController: UIViewController {
     var AIsImage:UIImage!
     var isGameAlreadyCompleted:Bool = false
 
-    
-     @IBOutlet weak var gameViewText: UILabel!
+    @IBOutlet weak var gameViewText: UILabel!
 
     
-    //@IBOutlet weak var usersImageView: UIImageView!
     // ViewDidload-- Initiate static things here
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +36,7 @@ class GameViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
     }
     
     // Function called when any button on gameboard is manually ressed by the user
@@ -48,7 +47,7 @@ class GameViewController: UIViewController {
             }
             else {
                 let positionOfButton = sender.tag
-                setImageOnButton(buttonTag:positionOfButton, playersRawValue:1)
+                setImageOnButton(buttonTag:positionOfButton, player:1)
                 if !(self.checkForGameState(forUser:1, board:self.board)){
                     gameViewText.text = "Its Computers turn"
                     self.showSpinner(onView: self.view)
@@ -93,7 +92,7 @@ class GameViewController: UIViewController {
         DispatchQueue.global(qos: .background).async {
             let moveOfAI = self.AISearchEngine.getAIsMove(board: self.board, player:2) + 1
                 DispatchQueue.main.async {
-                    self.setImageOnButton(buttonTag: moveOfAI, playersRawValue: 2)
+                    self.setImageOnButton(buttonTag: moveOfAI, player: 2)
                     
                     if (!self.checkForGameState(forUser:2, board:self.board)){
                         self.isAIsTurn = false
@@ -108,18 +107,24 @@ class GameViewController: UIViewController {
     
     
     
-    // Setting Image on a Button based on user action or AI's move
-    func setImageOnButton(buttonTag:Int, playersRawValue:Int) {
+    /** Setting Image on a Button based on user action or AI's move
+     * @param buttonTag- button that user or computer selected
+     * @param player - Player who maked the move
+     */
+    func setImageOnButton(buttonTag:Int, player:Int) {
         let tempButton = self.view.viewWithTag(buttonTag) as! UIButton
-            if playersRawValue == 1 {
+            if player == 1 {
                 tempButton.setImage(usersImage, for: [])
             } else {
                 tempButton.setImage(AIsImage, for: [])
             }
-        board.addMove(playerID: playersRawValue, atPosition: buttonTag-1)
+        board.addMove(playerID: player, atPosition: buttonTag-1)
     }
     
-    
+    /** Check for current state of game- whether a user won or if all moves are completed
+     * @param board- button that user or computer selected
+     * @param currentUser - Player who moved
+     */
     func checkForGameState(forUser currentUser:Int, board:Board) -> Bool {
         let result = board.checkIfGameIsWonUpdated(byUser:currentUser, gameState: board)
         if (result.0){
@@ -140,6 +145,10 @@ class GameViewController: UIViewController {
         return false
     }
     
+    /** Fucntion to change colors of buttons once any user is won
+     * @param currentUser -- player who won
+     * @param combination -- players winning combination
+    */
     func showWhoWonTheGame(currentUser:Int, combination:[Int]){
         for index in combination {
             let tempButton = self.view.viewWithTag(index+1) as! UIButton
@@ -148,11 +157,13 @@ class GameViewController: UIViewController {
     }
     
     
-    // Alert function which displays alert taking input string as parameter
+    /** Alert function which displays alert taking input string as parameter
+    *   @param message- Message that needs to be displayed on board
+    */
     func showAlert(withString message:String){
         playSound()
         let alert = UIAlertController(title: "Game Status", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: { action in
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { action in
         }))
         self.present(alert, animated: true)
     }
