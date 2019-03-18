@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/unb_black">
+    <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/white">
+
+        <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="40sp"
+                android:text="Tic Tac Toe"
+                android:textColor="@color/unb_black"/>
+    </android.support.v7.widget.Toolbar>
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/button_x"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:text="X"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:textSize="150sp"
+        android:background="@color/unb_black"/>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/button_o"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:text="O"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:textSize="150sp"
+        android:background="@color/unb_black"/>
+
+</LinearLayout>
