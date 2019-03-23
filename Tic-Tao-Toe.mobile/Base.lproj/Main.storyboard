@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Player Selection View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="PlayerSelectionViewController" customModule="Tic_Tao_Toe_mobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome To Tik-Tao-Toe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uX4-fM-Gbw">
+                                <rect key="frame" x="0.0" y="91" width="375" height="47"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="47" id="Xbe-Lc-4bE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose the type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="17t-j2-h5v">
+                                <rect key="frame" x="0.0" y="288" width="375" height="22"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xnt-pB-bGl">
+                                <rect key="frame" x="50" y="360" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="ZTo-dD-TCR"/>
+                                    <constraint firstAttribute="width" constant="100" id="twC-2j-z6W"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="circle"/>
+                                <connections>
+                                    <action selector="onTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0jY-JT-2wB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSO-cd-OUN">
+                                <rect key="frame" x="225" y="360" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="08H-g7-Qfi"/>
+                                    <constraint firstAttribute="width" constant="100" id="nZf-rq-52g"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="cross"/>
+                                <connections>
+                                    <action selector="onTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OeC-Zd-Agp"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" name="selectedControlColor" catalog="System" colorSpace="catalog"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cSO-cd-OUN" secondAttribute="trailing" constant="50" id="4P3-Z0-dAv"/>
+                            <constraint firstItem="xnt-pB-bGl" firstAttribute="top" secondItem="17t-j2-h5v" secondAttribute="bottom" constant="50" id="6lV-5o-dtW"/>
+                            <constraint firstItem="17t-j2-h5v" firstAttribute="top" secondItem="uX4-fM-Gbw" secondAttribute="bottom" constant="150" id="8dr-Py-ara"/>
+                            <constraint firstItem="uX4-fM-Gbw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="71" id="J6e-UF-Sin"/>
+                            <constraint firstItem="17t-j2-h5v" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="QT1-AQ-SDc"/>
+                            <constraint firstItem="xnt-pB-bGl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="bcO-Gs-MUZ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uX4-fM-Gbw" secondAttribute="trailing" id="iKp-H2-cau"/>
+                            <constraint firstItem="cSO-cd-OUN" firstAttribute="top" secondItem="17t-j2-h5v" secondAttribute="bottom" constant="50" id="lCX-0a-VeL"/>
+                            <constraint firstItem="17t-j2-h5v" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="s6K-Fs-cw2"/>
+                            <constraint firstItem="uX4-fM-Gbw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="wv3-zz-olv"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <segue destination="BIS-3j-ebX" kind="show" identifier="gameVC" id="f56-YP-T4X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="425" y="133"/>
+        </scene>
+        <!--Game View Controller-->
+        <scene sceneID="LsN-fY-beU">
+            <objects>
+                <viewController id="BIS-3j-ebX" customClass="GameViewController" customModule="Tic_Tao_Toe_mobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="c5F-RG-alY" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="9Cs-eh-w9J"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nyt-Qm-PLL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1134" y="132"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="circle" width="300" height="300"/>
+        <image name="cross" width="300" height="300"/>
+    </resources>
+</document>
