@@ -161,7 +161,7 @@ class GameScene: SKScene {
         self.board.makeMove(row: row, col: col)
         
         let userDefaults = UserDefaults.standard
-        if userDefaults.string(forKey: "type") == "circle"{
+        if userDefaults.string(forKey: "piece") == "circle"{
             self.makeCross(row: row, col: col)
         }else{
             self.makeCircle(row: row, col: col)
@@ -219,7 +219,7 @@ class GameScene: SKScene {
                             if self.board.getField(row: i, col: j) == 0 {
                                 // if field is empty and player is to move, then make this move
                                 self.board.makeMove(row: i, col: j)
-                                if UserDefaults.standard.string(forKey: "type") == "cross"{
+                                if UserDefaults.standard.string(forKey: "piece") == "cross"{
                                     makeCross(row: i, col: j)
                                 }else{
                                     makeCircle(row: i, col: j)

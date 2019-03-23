@@ -18,9 +18,9 @@ class PlayerSelectionViewController: UIViewController {
         let defaults = UserDefaults.standard
         
         if (sender as AnyObject).tag == 1 {
-            defaults.set("circle", forKey: "type")
+            defaults.set("circle", forKey: "piece")
         }else{
-            defaults.set("cross", forKey: "type")
+            defaults.set("cross", forKey: "piece")
         }
         performSegue(withIdentifier: "gameVC", sender: (sender as AnyObject).tag)
         
