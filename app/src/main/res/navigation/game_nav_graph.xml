@@ -36,6 +36,9 @@
             android:name="jingle"
             app:argType="string"
             android:defaultValue="vivek" />
+        <action
+            android:id="@+id/action_gameFragment_to_splashFragment"
+            app:destination="@id/splashFragment" />
     </fragment>
     <fragment
         android:id="@+id/scoreFragment"

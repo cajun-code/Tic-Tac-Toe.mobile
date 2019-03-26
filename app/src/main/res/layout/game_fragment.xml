@@ -35,94 +35,121 @@
         app:layout_constraintGuide_percent="0.66" />
 
 
-    <TextView
-        android:id="@+id/box_one"
+    <Button
+        android:id="@+id/box_0"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@id/hori_guideline1"
         app:layout_constraintEnd_toStartOf="@id/vert_guideline1"
         app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="5dp"
+        android:background="@color/white"
+        android:textSize="20sp"
+        android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/box_two"
+    <Button
+        android:id="@+id/box_1"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/colorAccent"
+        android:layout_margin="5dp"
         app:layout_constraintBottom_toTopOf="@id/hori_guideline1"
         app:layout_constraintEnd_toStartOf="@id/vert_guideline2"
         app:layout_constraintStart_toEndOf="@id/vert_guideline1"
+        android:background="@color/white"
+        android:textSize="20sp"
+        android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/box_three"
+    <Button
+        android:id="@+id/box_2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/colorAccent"
+        android:layout_margin="5dp"
         app:layout_constraintBottom_toTopOf="@id/hori_guideline1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/vert_guideline2"
+        android:background="@color/white"
+        android:textSize="20sp"
+        android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/box_four"
+    <Button
+        android:id="@+id/box_3"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@id/hori_guideline2"
         app:layout_constraintEnd_toStartOf="@id/vert_guideline1"
         app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/white"
+        android:layout_margin="5dp"
+        android:textSize="20sp"
+        android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/hori_guideline1" />
 
-    <TextView
-        android:id="@+id/box_five"
+    <Button
+        android:id="@+id/box_4"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/colorAccent"
+        android:background="@color/white"
+        android:layout_margin="5dp"
+        android:textSize="20sp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@id/hori_guideline2"
         app:layout_constraintEnd_toStartOf="@id/vert_guideline2"
         app:layout_constraintStart_toEndOf="@id/vert_guideline1"
         app:layout_constraintTop_toBottomOf="@id/hori_guideline1" />
 
-    <TextView
-        android:id="@+id/box_six"
+    <Button
+        android:id="@+id/box_5"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/colorAccent"
+        android:background="@color/white"
+        android:layout_margin="5dp"
+        android:textSize="20sp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@id/hori_guideline2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/vert_guideline1"
+        app:layout_constraintStart_toEndOf="@id/vert_guideline2"
         app:layout_constraintTop_toBottomOf="@id/hori_guideline1" />
 
-    <TextView
-        android:id="@+id/box_seven"
+    <Button
+        android:id="@+id/box_6"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/colorAccent"
+        android:background="@color/white"
+        android:layout_margin="5dp"
+        android:textSize="20sp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/vert_guideline1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/hori_guideline2" />
 
-    <TextView
-        android:id="@+id/box_eight"
+    <Button
+        android:id="@+id/box_7"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/colorAccent"
+        android:background="@color/white"
+        android:layout_margin="5dp"
+        android:textSize="20sp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/vert_guideline2"
         app:layout_constraintStart_toEndOf="@id/vert_guideline1"
         app:layout_constraintTop_toBottomOf="@id/hori_guideline2" />
 
-    <TextView
-        android:id="@+id/box_nine"
+    <Button
+        android:id="@+id/box_8"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/colorAccent"
+        android:background="@color/white"
+        android:layout_margin="5dp"
+        android:textSize="20sp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/vert_guideline1"
+        app:layout_constraintStart_toEndOf="@id/vert_guideline2"
         app:layout_constraintTop_toBottomOf="@id/hori_guideline2" />
 
     <View
