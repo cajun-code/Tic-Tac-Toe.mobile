@@ -8,4 +8,5 @@
     <string name="select_symbol">Select X or O: </string>
     <string name="symbol_X">X</string>
     <string name="symbol_O">O</string>
+    <string name="end_dialog_headline">The winner is</string>
 </resources>

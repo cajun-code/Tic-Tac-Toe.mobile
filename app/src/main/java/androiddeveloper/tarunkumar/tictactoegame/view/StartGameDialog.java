@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -52,8 +53,10 @@ public class StartGameDialog extends DialogFragment {
     }
 
     private void initViews() {
+        final ViewGroup nullParent = null;
+
         rootView = LayoutInflater.from(getContext())
-                .inflate(R.layout.dialog_game_start, null, false);
+                .inflate(R.layout.dialog_game_start, nullParent, false);
 
         playerLayout = rootView.findViewById(R.id.layout_player);
 
@@ -73,8 +76,8 @@ public class StartGameDialog extends DialogFragment {
         if (isAValidName(playerLayout, player)) {
 
             int selectedId = radioGroup.getCheckedRadioButtonId();
-
             radioButton = rootView.findViewById(selectedId);
+            activity.onPlayersSet(player, radioButton.getText().toString());
 
             dismiss();
         }
