@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/layout_player"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/et_player"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/player_hint"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <RadioGroup
+        android:id="@+id/symbol_radiogroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_symbol"
+            />
+
+        <RadioButton
+            android:id="@+id/symbol_X"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/symbol_X"
+            android:checked="true"
+            />
+        <RadioButton
+            android:id="@+id/symbol_O"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/symbol_O"
+            />
+    </RadioGroup>
+
+</LinearLayout>

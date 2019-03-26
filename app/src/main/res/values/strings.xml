@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">TicTacToeGame</string>
+    <string name="player_hint">Enter Player Name</string>
+    <string name="game_dialog_title">New game</string>
+    <string name="done">Done</string>
+    <string name="error_empty_name">Name mustn\'t be empty</string>
+    <string name="error_same_names">Names mustn\'t be the same</string>
+    <string name="select_symbol">Select X or O: </string>
+    <string name="symbol_X">X</string>
+    <string name="symbol_O">O</string>
 </resources>
