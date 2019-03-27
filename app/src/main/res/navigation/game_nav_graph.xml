@@ -23,17 +23,7 @@
         tools:layout="@layout/game_fragment"
         android:name="com.itamecodes.vivek.tictactoe.GameFragment"
         android:label="GameFragment" >
-        <argument
-            android:name="score"
-            app:argType="integer"
-            android:defaultValue="1" />
-        <argument
-            android:name="life"
-            android:defaultValue="2" />
-        <argument
-            android:name="jingle"
-            app:argType="string"
-            android:defaultValue="vivek" />
+
         <action
             android:id="@+id/action_gameFragment_to_splashFragment"
             app:destination="@id/splashFragment" />
