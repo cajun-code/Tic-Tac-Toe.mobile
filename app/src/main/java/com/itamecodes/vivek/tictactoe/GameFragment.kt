@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -19,22 +18,12 @@ import kotlinx.android.synthetic.main.game_fragment.*
 
 class GameFragment : Fragment(), View.OnClickListener {
 
-
     private lateinit var mGameViewModel: GameViewModel
     private var playerChoice: String = "X"
     private var computerChoice: String = "O"
     private var playerTurn: Boolean = true
     private var setBoxes = mutableSetOf(0, 1, 2, 3, 4, 5, 6, 7, 8)
 
-    val winCombinations = arrayOf(intArrayOf(0, 1, 2)
-            , intArrayOf(3, 4, 5)
-            , intArrayOf(6, 7, 8)
-            , intArrayOf(0, 3, 6)
-            , intArrayOf(1, 4, 7)
-            , intArrayOf(2, 5, 8)
-            , intArrayOf(0, 4, 8)
-            , intArrayOf(6, 4, 2)
-    )
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.game_fragment, container, false);
@@ -47,15 +36,16 @@ class GameFragment : Fragment(), View.OnClickListener {
         showDialogForTurnChosing()
     }
 
-    fun showDialogForTurnChosing() {
+    //TODO ideally these dialogs could be better than alert dialogs and should be controlled by the viewmodel
+    private fun showDialogForTurnChosing() {
         context?.let {
             val dialogBuilder = AlertDialog.Builder(it)
-            return@let dialogBuilder.setMessage("Do you want to go first")
+            return@let dialogBuilder.setMessage(getString(R.string.go_first))
                     .setCancelable(false)
-                    .setPositiveButton("Yes") { _, _ ->
+                    .setPositiveButton(getString(R.string.yes)) { _, _ ->
                         playerTurn = true
                         showDialogForSignChosing()
-                    }.setNegativeButton("No") { _, _ ->
+                    }.setNegativeButton(getString(R.string.no)) { _, _ ->
                         playerTurn = false
                         showDialogForSignChosing()
                     }.create().show()
@@ -63,16 +53,17 @@ class GameFragment : Fragment(), View.OnClickListener {
 
     }
 
+    //TODO ideally these dialogs could be better than alert dialogs and should be controlled by the viewmodel
     private fun showDialogForSignChosing() {
         context?.let {
             val dialogBuilder = AlertDialog.Builder(it)
-            return@let dialogBuilder.setMessage("I guess You want to chose the sign 'X' ")
+            return@let dialogBuilder.setMessage(getString(R.string.choseX))
                     .setCancelable(false)
-                    .setPositiveButton("Yes") { _, _ ->
+                    .setPositiveButton(getString(R.string.yes)) { _, _ ->
                         playerChoice = "X"
                         computerChoice = "O"
                         initListenersAndStartGame()
-                    }.setNegativeButton("No") { _, _ ->
+                    }.setNegativeButton(getString(R.string.no)) { _, _ ->
                         playerChoice = "O"
                         computerChoice = "X"
                         initListenersAndStartGame()
@@ -81,7 +72,7 @@ class GameFragment : Fragment(), View.OnClickListener {
 
     }
 
-    fun setNextMoveListener(){
+    private fun setNextMoveListener() {
         mGameViewModel.nextAIMove.observe(this, Observer {
             val nextMove = it.index.toInt()
             getButtonDynamically("box_$nextMove").text = computerChoice
@@ -89,25 +80,23 @@ class GameFragment : Fragment(), View.OnClickListener {
         })
     }
 
-    fun isGameWonListener(){
+    private fun isGameWonListener() {
         mGameViewModel.isGameWon.observe(this, Observer {
-          it?.let{
-              //declare winner
-              highlightWinningBoxes(it)
-              if(it.player.type == GameViewModel.PLAYER_AI) declareWinner("I win") else declareWinner("You win")
-          }
+            it?.let {
+                //declare winner
+                highlightWinningBoxes(it)
+                if (it.player.type == GameViewModel.PLAYER_AI) declareWinner("I win") else declareWinner("You win")
+            }
         })
     }
 
-    fun isGameATieListener(){
-        mGameViewModel.isGameATie.observe(this, Observer {isTied->
-            if(isTied){
-                declareWinner("Game Tied")
-            }else{
+    private fun isGameATieListener() {
+        mGameViewModel.isGameATie.observe(this, Observer { isTied ->
+            if (isTied) {
+                declareWinner(getString(R.string.game_tied))
+            } else {
                 playerTurn = !playerTurn
-                if(playerTurn){
-                    Toast.makeText(activity, "Your Turn", Toast.LENGTH_LONG).show()
-                }else{
+                if (!playerTurn) {
                     mGameViewModel.makeAIMove()
                 }
             }
@@ -115,13 +104,11 @@ class GameFragment : Fragment(), View.OnClickListener {
     }
 
     private fun initListenersAndStartGame() {
-        mGameViewModel.instantiateViewModel(playerChoice,playerTurn)
+        mGameViewModel.instantiateViewModel(playerChoice, playerTurn)
         setNextMoveListener()
         isGameATieListener()
         isGameWonListener()
-        if (playerTurn) {
-            Toast.makeText(activity, "Your Turn", Toast.LENGTH_LONG).show()
-        } else {
+        if (!playerTurn) {
             mGameViewModel.makeAIMove()
         }
     }
@@ -135,7 +122,7 @@ class GameFragment : Fragment(), View.OnClickListener {
         setClickListeners()
     }
 
-    fun setClickListeners() {
+    private fun setClickListeners() {
         setBoxes.forEach {
             getButtonDynamically("box_$it").setOnClickListener(this)
         }
@@ -150,35 +137,34 @@ class GameFragment : Fragment(), View.OnClickListener {
             val idString = resources.getResourceEntryName(button.id)
             val index = idString.split("_")[1].toInt()
             mGameViewModel.checkForHumanPlayerWinOrTie(index)
-
         }
     }
 
     private fun highlightWinningBoxes(gameWon: GameWon) {
-        val winningCombination = winCombinations[gameWon.index]
-        winningCombination.forEachIndexed { index, i ->
+        val winningCombination = GameViewModel.WIN_COMBINATIONS[gameWon.index]
+        winningCombination.forEachIndexed { _, i ->
             getButtonDynamically("box_$i").setBackgroundColor(Color.RED)
         }
     }
 
-    fun declareWinner(message: String) {
+    private fun declareWinner(message: String) {
         context?.let {
             val dialogBuilder = AlertDialog.Builder(it)
-            return@let dialogBuilder.setMessage("$message. Do you want to restart")
+            return@let dialogBuilder.setMessage(getString(R.string.game_restart).format(message))
                     .setCancelable(false)
-                    .setPositiveButton("Yes") { dialog, _ ->
+                    .setPositiveButton(getString(R.string.yes)) { dialog, _ ->
                         resetScreen()
                         dialog.dismiss()
                         showDialogForTurnChosing()
-                    }.setNegativeButton("No") { dialog, which ->
+                    }.setNegativeButton(getString(R.string.no)) { dialog, which ->
                         dialog.dismiss()
                         findNavController(box_0).navigate(R.id.action_gameFragment_to_splashFragment, null)
                     }.create().show()
         }
     }
 
-    fun resetScreen() {
-        setBoxes.forEachIndexed { index,i ->
+    private fun resetScreen() {
+        setBoxes.forEachIndexed { _, i ->
             getButtonDynamically("box_$i").text = ""
             getButtonDynamically("box_$i").isEnabled = true
             getButtonDynamically("box_$i").setBackgroundColor(Color.WHITE)
@@ -187,11 +173,6 @@ class GameFragment : Fragment(), View.OnClickListener {
         mGameViewModel.isGameATie.removeObservers(this)
         mGameViewModel.isGameWon.removeObservers(this)
     }
-
-
-
-
-
 
 
 }

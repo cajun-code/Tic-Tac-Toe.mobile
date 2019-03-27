@@ -12,6 +12,8 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/tooBarColor"
         android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@color/white"
+        app:theme="@style/AppTheme.Toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

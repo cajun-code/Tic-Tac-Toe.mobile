@@ -1,6 +1,5 @@
 package com.itamecodes.vivek.tictactoe.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.itamecodes.vivek.tictactoe.models.GameBoard
@@ -20,19 +19,20 @@ class GameViewModel : ViewModel() {
     lateinit var isGameWon: MutableLiveData<GameWon>
     lateinit var isGameATie: MutableLiveData<Boolean>
 
-    val winCombinations = arrayOf(intArrayOf(0, 1, 2)
-            , intArrayOf(3, 4, 5)
-            , intArrayOf(6, 7, 8)
-            , intArrayOf(0, 3, 6)
-            , intArrayOf(1, 4, 7)
-            , intArrayOf(2, 5, 8)
-            , intArrayOf(0, 4, 8)
-            , intArrayOf(6, 4, 2)
-    )
+
 
     companion object {
         const val PLAYER_HUMAN: Int = 1
         const val PLAYER_AI: Int = 2
+        val WIN_COMBINATIONS = arrayOf(intArrayOf(0, 1, 2)
+                , intArrayOf(3, 4, 5)
+                , intArrayOf(6, 7, 8)
+                , intArrayOf(0, 3, 6)
+                , intArrayOf(1, 4, 7)
+                , intArrayOf(2, 5, 8)
+                , intArrayOf(0, 4, 8)
+                , intArrayOf(6, 4, 2)
+        )
     }
 
 
@@ -51,15 +51,18 @@ class GameViewModel : ViewModel() {
 
     fun minimax(board: GameBoard, player: Player): Move {
         var availSpots = emptySlots()
-        var gameWon = checkForWinnerNew(board, player)
-        gameWon?.let {
-            when (gameWon.player.sign) {
-                humanPlayer.sign -> return Move("-1", -10)
-                else -> return Move("-1", 20)
-            }
-        } ?: run {
-            if (availSpots.isEmpty()) return Move("-1", 0)
+        var gameWonPlayer = checkForWinnerNew(board, humanPlayer)
+        var gameWonComputer = checkForWinnerNew(board, aiPlayer)
+        gameWonPlayer?.let{
+            return Move("-1", -10)
         }
+        gameWonComputer?.let{
+            return Move("-1", 10)
+        }
+        if(availSpots.isEmpty()){
+            return Move("-1", 0)
+        }
+
         var moves = mutableListOf<Move>()
         availSpots.forEachIndexed { index, element ->
             var move: Move
@@ -80,7 +83,7 @@ class GameViewModel : ViewModel() {
         var bestMove: Int = 0
         if (player.sign == aiPlayer.sign) {
             var bestScore = -10000
-            moves.forEachIndexed { index, move ->
+            moves.forEachIndexed { index, _ ->
                 if (moves[index].score > bestScore) {
                     bestScore = moves[index].score
                     bestMove = index
@@ -110,7 +113,7 @@ class GameViewModel : ViewModel() {
         var index = 0
 
         //check if plays has any of the win combos
-        for (i in winCombinations) {
+        for (i in WIN_COMBINATIONS) {
             //see if the element from plays exists in the i
             var gameLost = false
             for (elem in i) {
@@ -129,7 +132,6 @@ class GameViewModel : ViewModel() {
     }
 
     fun makeAIMove() {
-        Log.v("vivekrocks","called")
         val move = bestSpot()
         nextAIMove.postValue(move)
         originalBoard.board[move.index.toInt()] = aiPlayer.sign

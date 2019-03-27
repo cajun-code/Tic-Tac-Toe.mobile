@@ -1,4 +1,13 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">TicTacToe</string>
     <string name="settings">Settings</string>
+    <string name="go_first">Do you want to go first?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="choseX">I guess you want to chose \"X\"</string>
+    <string name="game_tied">Game Tied</string>
+    <string name="game_restart">%1$s! Do you want to restart the game?</string>
+    <string name="app_head_two">You are not going to win this game! Thanks, it was fun building this</string>
+    <string name="playgame">Let Us Play!</string>
+    <string name="settings_placeholder">Settings Fragment Placeholder</string>
 </resources>
