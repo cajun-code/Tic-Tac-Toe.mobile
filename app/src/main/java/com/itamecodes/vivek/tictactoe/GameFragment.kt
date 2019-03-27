@@ -19,11 +19,11 @@ import kotlinx.android.synthetic.main.game_fragment.*
 class GameFragment : Fragment(), View.OnClickListener {
 
     private lateinit var mGameViewModel: GameViewModel
-    private var playerChoice: String = "X" //TODO try to use this from the viewmodel
-    private var computerChoice: String = "O" //TODO try to use this from the viewmodel
-    private var playerTurn: Boolean = true //TODO try to use this from the viewmodel
+    private var mPlayerChoice: String = "X" //TODO try to use this from the viewmodel
+    private var mComputerChoice: String = "O" //TODO try to use this from the viewmodel
+    private var mPlayerTurn: Boolean = true //TODO try to use this from the viewmodel
     //just a helper to loop through the buttons
-    private var setBoxes = mutableSetOf(0, 1, 2, 3, 4, 5, 6, 7, 8)
+    private var mSetBoxes = mutableSetOf(0, 1, 2, 3, 4, 5, 6, 7, 8)
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -44,10 +44,10 @@ class GameFragment : Fragment(), View.OnClickListener {
             return@let dialogBuilder.setMessage(getString(R.string.go_first))
                     .setCancelable(false)
                     .setPositiveButton(getString(R.string.yes)) { _, _ ->
-                        playerTurn = true
+                        mPlayerTurn = true
                         showDialogForSignChosing()
                     }.setNegativeButton(getString(R.string.no)) { _, _ ->
-                        playerTurn = false
+                        mPlayerTurn = false
                         showDialogForSignChosing()
                     }.create().show()
         }
@@ -61,12 +61,12 @@ class GameFragment : Fragment(), View.OnClickListener {
             return@let dialogBuilder.setMessage(getString(R.string.choseX))
                     .setCancelable(false)
                     .setPositiveButton(getString(R.string.yes)) { _, _ ->
-                        playerChoice = "X"
-                        computerChoice = "O"
+                        mPlayerChoice = "X"
+                        mComputerChoice = "O"
                         initListenersAndStartGame()
                     }.setNegativeButton(getString(R.string.no)) { _, _ ->
-                        playerChoice = "O"
-                        computerChoice = "X"
+                        mPlayerChoice = "O"
+                        mComputerChoice = "X"
                         initListenersAndStartGame()
                     }.create().show()
         }
@@ -76,7 +76,7 @@ class GameFragment : Fragment(), View.OnClickListener {
     private fun setNextMoveListener() {
         mGameViewModel.nextAIMove.observe(this, Observer {
             val nextMove = it.index.toInt()
-            getButtonDynamically("box_$nextMove").text = computerChoice
+            getButtonDynamically("box_$nextMove").text = mComputerChoice
             getButtonDynamically("box_$nextMove").isEnabled = false
         })
     }
@@ -96,8 +96,8 @@ class GameFragment : Fragment(), View.OnClickListener {
             if (isTied) {
                 declareWinner(getString(R.string.game_tied))
             } else {
-                playerTurn = !playerTurn
-                if (!playerTurn) {
+                mPlayerTurn = !mPlayerTurn
+                if (!mPlayerTurn) {
                     mGameViewModel.makeAIMove()
                 }
             }
@@ -105,11 +105,11 @@ class GameFragment : Fragment(), View.OnClickListener {
     }
 
     private fun initListenersAndStartGame() {
-        mGameViewModel.instantiateViewModel(playerChoice, playerTurn)
+        mGameViewModel.instantiateViewModel(mPlayerChoice, mPlayerTurn)
         setNextMoveListener()
         isGameATieListener()
         isGameWonListener()
-        if (!playerTurn) {
+        if (!mPlayerTurn) {
             mGameViewModel.makeAIMove()
         }
     }
@@ -124,15 +124,15 @@ class GameFragment : Fragment(), View.OnClickListener {
     }
 
     private fun setClickListeners() {
-        setBoxes.forEach {
+        mSetBoxes.forEach {
             getButtonDynamically("box_$it").setOnClickListener(this)
         }
     }
 
 
     override fun onClick(button: View?) {
-        if (playerTurn) {
-            (button as Button).text = playerChoice
+        if (mPlayerTurn) {
+            (button as Button).text = mPlayerChoice
             button.isEnabled = false
             //TODO just use a tag
             val idString = resources.getResourceEntryName(button.id)
@@ -165,7 +165,7 @@ class GameFragment : Fragment(), View.OnClickListener {
     }
 
     private fun resetScreen() {
-        setBoxes.forEachIndexed { _, i ->
+        mSetBoxes.forEachIndexed { _, i ->
             getButtonDynamically("box_$i").text = ""
             getButtonDynamically("box_$i").isEnabled = true
             getButtonDynamically("box_$i").setBackgroundColor(Color.WHITE)

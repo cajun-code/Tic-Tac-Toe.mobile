@@ -11,9 +11,9 @@ class GameViewModel : ViewModel() {
 
     val signChoices = arrayOf("X", "O")
 
-    lateinit var humanPlayer: Player
-    lateinit var aiPlayer: Player
-    lateinit var originalBoard: GameBoard
+    private lateinit var mHumanPlayer: Player
+    private lateinit var mAIPlayer: Player
+    private lateinit var mOriginalBoard: GameBoard
     private var mPlayerTurn: Boolean = true
     lateinit var nextAIMove: MutableLiveData<Move>
     lateinit var isGameWon: MutableLiveData<GameWon>
@@ -37,22 +37,27 @@ class GameViewModel : ViewModel() {
 
 
     fun instantiateViewModel(playerChoice: String, playerTurn: Boolean) {
-        humanPlayer = Player(PLAYER_HUMAN, playerChoice)
+        mHumanPlayer = Player(PLAYER_HUMAN, playerChoice)
         when (playerChoice) {
-            signChoices[0] -> aiPlayer = Player(PLAYER_AI, signChoices[1])
-            signChoices[1] -> aiPlayer = Player(PLAYER_AI, signChoices[0])
+            signChoices[0] -> mAIPlayer = Player(PLAYER_AI, signChoices[1])
+            signChoices[1] -> mAIPlayer = Player(PLAYER_AI, signChoices[0])
         }
-        originalBoard = GameBoard(mutableListOf<String>("0", "1", "2", "3", "4", "5", "6", "7", "8"))
+        mOriginalBoard = GameBoard(mutableListOf<String>("0", "1", "2", "3", "4", "5", "6", "7", "8"))
         mPlayerTurn = playerTurn
         nextAIMove = MutableLiveData()
         isGameWon = MutableLiveData()
         isGameATie = MutableLiveData()
     }
 
-    fun minimax(board: GameBoard, player: Player): Move {
+    /**
+     * The computation of the next AI move is done here. It takes in the board object which is an array of 9 slots on
+     * the tic tac toe board. The AI simulates a set of all future moves and assigns a score to each of the moves and returns
+     * the move with the maximum score
+     */
+    private fun minimax(board: GameBoard, player: Player): Move {
         var availSpots = emptySlots()
-        var gameWonPlayer = checkForWinnerNew(board, humanPlayer)
-        var gameWonComputer = checkForWinnerNew(board, aiPlayer)
+        var gameWonPlayer = checkForWinnerNew(board, mHumanPlayer)
+        var gameWonComputer = checkForWinnerNew(board, mAIPlayer)
         gameWonPlayer?.let{
             return Move("-1", -10)
         }
@@ -69,19 +74,19 @@ class GameViewModel : ViewModel() {
             var boardStatusArray = board.board
             var indexMove = boardStatusArray[availSpots[index].toInt()]
             boardStatusArray[availSpots[index].toInt()] = player.sign
-            if (player.sign == aiPlayer.sign) {
-                var result = minimax(board, humanPlayer)
+            if (player.sign == mAIPlayer.sign) {
+                var result = minimax(board, mHumanPlayer)
                 move = Move(indexMove, result.score)
             } else {
-                var result = minimax(board, aiPlayer)
+                var result = minimax(board, mAIPlayer)
                 move = Move(indexMove, result.score)
             }
 
             boardStatusArray[availSpots[index].toInt()] = move.index
             moves.add(move)
         }
-        var bestMove: Int = 0
-        if (player.sign == aiPlayer.sign) {
+        var bestMove = 0
+        if (player.sign == mAIPlayer.sign) {
             var bestScore = -10000
             moves.forEachIndexed { index, _ ->
                 if (moves[index].score > bestScore) {
@@ -110,10 +115,10 @@ class GameViewModel : ViewModel() {
                 plays.add(i)
             }
         }
-        var index = 0
+
 
         //check if plays has any of the win combos
-        for (winComb in WIN_COMBINATIONS) {
+        for ((index, winComb) in WIN_COMBINATIONS.withIndex()) {
             //see if the element from plays exists in the i
             var gameLost = false
             for (elem in winComb) {
@@ -126,7 +131,6 @@ class GameViewModel : ViewModel() {
             if (!gameLost) {
                 gameWon = GameWon(index, player)
             }
-            index++;
         }
         return gameWon
     }
@@ -134,17 +138,17 @@ class GameViewModel : ViewModel() {
     fun makeAIMove() {
         val move = bestSpot()
         nextAIMove.postValue(move)
-        originalBoard.board[move.index.toInt()] = aiPlayer.sign
-        checkForWinOrTie(aiPlayer)
+        mOriginalBoard.board[move.index.toInt()] = mAIPlayer.sign
+        checkForWinOrTie(mAIPlayer)
     }
 
     fun checkForHumanPlayerWinOrTie(indexOfMove: Int) {
-        originalBoard.board[indexOfMove] = humanPlayer.sign
-        checkForWinOrTie(humanPlayer)
+        mOriginalBoard.board[indexOfMove] = mHumanPlayer.sign
+        checkForWinOrTie(mHumanPlayer)
     }
 
-    fun checkForWinOrTie(player: Player) {
-        var gameWon = checkForWinnerNew(originalBoard, player)
+    private fun checkForWinOrTie(player: Player) {
+        var gameWon = checkForWinnerNew(mOriginalBoard, player)
         gameWon?.let {
             isGameWon.postValue(gameWon)
         } ?: run {
@@ -153,15 +157,15 @@ class GameViewModel : ViewModel() {
         }
     }
 
-    fun bestSpot(): Move {
-        return minimax(originalBoard, aiPlayer)
+    private fun bestSpot(): Move {
+        return minimax(mOriginalBoard, mAIPlayer)
     }
 
-    fun emptySlots(): List<String> {
-        return originalBoard.board.filter { it != "X" && it != "O" }
+    private fun emptySlots(): List<String> {
+        return mOriginalBoard.board.filter { it != "X" && it != "O" }
     }
 
-    fun checkForTie(): Boolean {
+    private fun checkForTie(): Boolean {
         if (emptySlots().isEmpty()) {
             return true
         }
