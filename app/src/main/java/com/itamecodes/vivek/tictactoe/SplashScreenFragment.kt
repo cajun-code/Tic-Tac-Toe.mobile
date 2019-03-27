@@ -8,23 +8,21 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
 import kotlinx.android.synthetic.main.splash_fragment.*
-class SplashScreenFragment: Fragment() {
+
+class SplashScreenFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        var v = inflater.inflate(R.layout.splash_fragment,container,false)
-        return v
+        return inflater.inflate(R.layout.splash_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view_score_button.setOnClickListener{
+        play_game_button.setOnClickListener {
             val action = SplashScreenFragmentDirections.actionSplashFragmentToGameFragment()
-            action.setScore(10)
             findNavController(it).navigate(action)
         }
-            play_game_button.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.scoreFragment,null))
-        }
     }
+}
 
 
 

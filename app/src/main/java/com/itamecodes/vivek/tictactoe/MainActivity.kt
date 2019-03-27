@@ -24,14 +24,6 @@ class MainActivity : AppCompatActivity() {
         navController = findNavController(nav_host_fragment)
         appBarConfiguration = AppBarConfiguration.Builder(navController.graph).build()
         NavigationUI.setupActionBarWithNavController(this,navController,appBarConfiguration)
-        val sharedViewModel = ViewModelProviders.of(this).get(SharedViewModel::class.java)
-        sharedViewModel.inputNumber.observe(this, Observer{
-            it?.let{
-                //do something
-            }
-        })
-
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
