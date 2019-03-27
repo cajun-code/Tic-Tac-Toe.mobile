@@ -113,10 +113,10 @@ class GameViewModel : ViewModel() {
         var index = 0
 
         //check if plays has any of the win combos
-        for (i in WIN_COMBINATIONS) {
+        for (winComb in WIN_COMBINATIONS) {
             //see if the element from plays exists in the i
             var gameLost = false
-            for (elem in i) {
+            for (elem in winComb) {
                 if (plays.indexOf(elem) == -1) {
                     //game lost
                     gameLost = true

@@ -19,9 +19,10 @@ import kotlinx.android.synthetic.main.game_fragment.*
 class GameFragment : Fragment(), View.OnClickListener {
 
     private lateinit var mGameViewModel: GameViewModel
-    private var playerChoice: String = "X"
-    private var computerChoice: String = "O"
-    private var playerTurn: Boolean = true
+    private var playerChoice: String = "X" //TODO try to use this from the viewmodel
+    private var computerChoice: String = "O" //TODO try to use this from the viewmodel
+    private var playerTurn: Boolean = true //TODO try to use this from the viewmodel
+    //just a helper to loop through the buttons
     private var setBoxes = mutableSetOf(0, 1, 2, 3, 4, 5, 6, 7, 8)
 
 
@@ -36,7 +37,7 @@ class GameFragment : Fragment(), View.OnClickListener {
         showDialogForTurnChosing()
     }
 
-    //TODO ideally these dialogs could be better than alert dialogs and should be controlled by the viewmodel
+    //TODO  these dialogs could be better than alert dialogs and should be controlled by the viewmodel
     private fun showDialogForTurnChosing() {
         context?.let {
             val dialogBuilder = AlertDialog.Builder(it)
@@ -53,7 +54,7 @@ class GameFragment : Fragment(), View.OnClickListener {
 
     }
 
-    //TODO ideally these dialogs could be better than alert dialogs and should be controlled by the viewmodel
+    //TODO  these dialogs could be better than alert dialogs and should be controlled by the viewmodel
     private fun showDialogForSignChosing() {
         context?.let {
             val dialogBuilder = AlertDialog.Builder(it)
@@ -85,7 +86,7 @@ class GameFragment : Fragment(), View.OnClickListener {
             it?.let {
                 //declare winner
                 highlightWinningBoxes(it)
-                if (it.player.type == GameViewModel.PLAYER_AI) declareWinner("I win") else declareWinner("You win")
+                if (it.player.type == GameViewModel.PLAYER_AI) declareWinner(getString(R.string.ai_win_message)) else declareWinner(getString(R.string.human_win_message))
             }
         })
     }

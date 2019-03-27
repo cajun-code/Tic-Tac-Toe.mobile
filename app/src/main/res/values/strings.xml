@@ -10,4 +10,6 @@
     <string name="app_head_two">You are not going to win this game! Thanks, it was fun building this</string>
     <string name="playgame">Let Us Play!</string>
     <string name="settings_placeholder">Settings Fragment Placeholder</string>
+    <string name="human_win_message">You Won</string>
+    <string name="ai_win_message">I won</string>
 </resources>
