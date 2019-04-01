@@ -21,7 +21,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GsQ-34-1Hc">
                                 <rect key="frame" x="12.5" y="95" width="350" height="343"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My avatar today is going to be:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUb-GT-xKt">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I will play with:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUb-GT-xKt">
                                         <rect key="frame" x="0.0" y="42" width="350" height="27.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" id="fFV-8s-Kdm"/>
@@ -78,6 +78,7 @@
                         <outlet property="circleBtn" destination="GCB-eI-yF1" id="fvB-x6-82s"/>
                         <outlet property="crossBtn" destination="zJ2-L5-ksa" id="Gd5-bE-UdR"/>
                         <outlet property="popupView" destination="GsQ-34-1Hc" id="N3G-q7-7Jq"/>
+                        <outlet property="topLbl" destination="uUb-GT-xKt" id="nse-PV-FsM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -172,7 +173,9 @@
                     <connections>
                         <outlet property="AIMoveLoading" destination="gnN-tq-XeO" id="DKs-gS-HAy"/>
                         <outlet property="collectionView" destination="ncn-kA-8Sj" id="zdJ-dr-m6b"/>
+                        <outlet property="collectionviewTopConstraint" destination="U5Q-Y2-ruR" id="Nsc-aA-cdp"/>
                         <outlet property="loadingPicHeightConstraint" destination="jw5-II-bmz" id="Mxa-Hw-jiw"/>
+                        <outlet property="resetBtnBottomConstraint" destination="aGw-So-Rln" id="aKe-VP-Q1I"/>
                         <outlet property="resetButton" destination="P4Q-5z-Nm4" id="NgL-KW-Jw7"/>
                     </connections>
                 </viewController>

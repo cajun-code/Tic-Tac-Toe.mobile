@@ -104,10 +104,9 @@
 			isa = PBXGroup;
 			children = (
 				CBE0CD3A224DDEE500BF9844 /* AppDelegate.swift */,
-				CBE0CD3C224DDEE500BF9844 /* PopupViewController.swift */,
-				CBE0CD6A224EB2B500BF9844 /* BoardCollectionViewCell.swift */,
-				CBE0CD68224DE04800BF9844 /* GameViewController.swift */,
-				CBFD1DBB224F3D210086D6A3 /* AIBrain.swift */,
+				CBFD1DC02251FD190086D6A3 /* Controllers */,
+				CBFD1DBD2251FCED0086D6A3 /* Model */,
+				CBFD1DBE2251FCFD0086D6A3 /* Cells */,
 				CBE0CD3E224DDEE500BF9844 /* Main.storyboard */,
 				CBE0CD41224DDEE700BF9844 /* Assets.xcassets */,
 				CBE0CD43224DDEE700BF9844 /* LaunchScreen.storyboard */,
@@ -132,6 +131,31 @@
 				CBE0CD5C224DDEE700BF9844 /* Info.plist */,
 			);
 			path = TicTacToeUITests;
+			sourceTree = "<group>";
+		};
+		CBFD1DBD2251FCED0086D6A3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CBFD1DBB224F3D210086D6A3 /* AIBrain.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CBFD1DBE2251FCFD0086D6A3 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CBE0CD6A224EB2B500BF9844 /* BoardCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		CBFD1DC02251FD190086D6A3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CBE0CD3C224DDEE500BF9844 /* PopupViewController.swift */,
+				CBE0CD68224DE04800BF9844 /* GameViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

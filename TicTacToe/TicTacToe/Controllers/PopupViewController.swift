@@ -15,12 +15,14 @@ protocol SymbolDelegate {
 
 class PopupViewController: UIViewController {
 
+    @IBOutlet weak var topLbl: UILabel!
     @IBOutlet weak var popupView: UIView!
     @IBOutlet weak var circleBtn: UIButton!
     @IBOutlet weak var crossBtn: UIButton!
     
     var selectedAvatar = ""
     var delegate: SymbolDelegate?
+    let scaleFactor: CGFloat = UIScreen.main.bounds.width/375
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,9 +33,10 @@ class PopupViewController: UIViewController {
     func commonInit(){
         
         dropShadow(view: popupView)
+        topLbl.font = topLbl.font.withSize(20 * scaleFactor)
     }
     
-    
+    //To drop shadow for main view
     func dropShadow(scale: Bool = true, view: UIView) {
         
         view.layer.masksToBounds = false
