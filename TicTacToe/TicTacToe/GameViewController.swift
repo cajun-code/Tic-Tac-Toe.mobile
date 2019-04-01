@@ -26,9 +26,9 @@ class GameViewController: UIViewController, UICollectionViewDelegate, UICollecti
 //    -------------
     var possibleCells = [0,1,2,3,4,5,6,7,8]
     var possibleWinSituations = [[0,1,2],[0,4,8],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[2,4,6]]
-    var requiredCells = [0,2,4,6,8]
     let cellsPerRow: Int = 3
     let spaceBetweenRows: CGFloat = 10.0
+    var orderOfBestMoves = [4,0,2,6,8]
     
     var selectedAvatar = "none"
     var userCell = false
@@ -153,6 +153,7 @@ class GameViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
     }
     
+
     // MARK: - COLLECTION VIEW DESIGN
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -184,8 +185,9 @@ class GameViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let cell = collectionView.cellForItem(at: indexPath) as! BoardCollectionViewCell
+        debugPrint(print(indexPath))
         
-        if self.userCell {
+        if userCell {
             collectionView.isUserInteractionEnabled = false
             showLoadingIcon()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute:{
@@ -195,7 +197,8 @@ class GameViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 self.userCell = false
                 if self.AIMoves.count > 2 {
                     if AIBrain().Win(Arr: self.AIMoves)  {
-                    debugPrint("Computer won")
+                        self.showAlert(withString: "Computer won! Better luck next time!")
+                        debugPrint("Computer won")
                     }
                 }
             self.AIMoveLoading.isHidden = true
@@ -210,6 +213,7 @@ class GameViewController: UIViewController, UICollectionViewDelegate, UICollecti
             var didHumanWin = false
             if self.playerMoves.count > 2 {
                 if  AIBrain().Win(Arr: self.playerMoves) {
+                    self.showAlert(withString: "Congratulations! You achieved the impossible.")
                     debugPrint("Player won")
                     didHumanWin = true
                 }
@@ -241,7 +245,8 @@ class GameViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     }
                 }
                 if (bestMove == nil){
-                    bestMove = self.requiredCells.first(where: {temp.contains($0 )})
+                    
+                    bestMove = orderOfBestMoves.first(where: {temp.contains($0 )})
                 }
                 let random = Int(arc4random_uniform(UInt32(temp.count)))
                 if  temp.count > 0{
@@ -252,8 +257,17 @@ class GameViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
         cell.isUserInteractionEnabled = false
         if  AIMoves.count + playerMoves.count == 9{
+            self.showAlert(withString: "Match Drawn!")
              debugPrint("Game Over")
         }
+    }
+    
+    func showAlert(withString message:String){
+        let alert = UIAlertController(title: "Game complete", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Play again", style: .cancel, handler: { action in
+            self.performSegue(withIdentifier: "showSegue", sender: Any?.self)
+        }))
+        self.present(alert, animated: true)
     }
 
 

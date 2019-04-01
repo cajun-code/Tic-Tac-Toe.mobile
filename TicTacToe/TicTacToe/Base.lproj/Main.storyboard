@@ -155,7 +155,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.22083041619999999" green="0.43396183049999998" blue="0.69836509229999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="P4Q-5z-Nm4" firstAttribute="centerX" secondItem="fFG-Rn-aMk" secondAttribute="centerX" id="0i2-rh-Mkt"/>
                             <constraint firstItem="ncn-kA-8Sj" firstAttribute="centerX" secondItem="fFG-Rn-aMk" secondAttribute="centerX" id="1CR-pa-vcJ"/>
