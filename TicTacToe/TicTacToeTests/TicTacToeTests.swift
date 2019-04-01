@@ -19,10 +19,17 @@ class TicTacToeTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testIsWin() {
+        let model = AIBrain()
+        //model.initialize()
+        var Win = model.Win(Arr: [0,4,8])
+        assert(Win == true, "Win succeeded")
+        
+        Win = model.Win(Arr: [1,5,2])
+        assert(Win == false, "Win failed")
     }
+
 
     func testPerformanceExample() {
         // This is an example of a performance test case.

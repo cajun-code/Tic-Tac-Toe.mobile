@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 //Delegate interaction from popup viewcontroller based on user's avatar choices
 class GameViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout , UICollectionViewDataSource, SymbolDelegate {
@@ -263,6 +264,7 @@ class GameViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func showAlert(withString message:String){
+        AudioServicesPlaySystemSound(1519)
         let alert = UIAlertController(title: "Game complete", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Play again", style: .cancel, handler: { action in
             self.performSegue(withIdentifier: "showSegue", sender: Any?.self)
