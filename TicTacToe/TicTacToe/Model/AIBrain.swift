@@ -12,8 +12,7 @@ class AIBrain: NSObject {
     
     var Game = GameViewController()
     
-    
-    func Win(Arr : Array<Int>) -> Bool {
+    func Win(Moves : Array<Int>) -> Bool {
         var count = Int()
         var win = false
         for i in 0 ..< Game.possibleWinSituations.count
@@ -21,7 +20,7 @@ class AIBrain: NSObject {
             count = 0
             for j in 0 ..< Game.possibleWinSituations[i].count
             {
-                if Arr.contains((Game.possibleWinSituations[i])[j])
+                if Moves.contains((Game.possibleWinSituations[i])[j])
                 {
                     count += 1
                 }

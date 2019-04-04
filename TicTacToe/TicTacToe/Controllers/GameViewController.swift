@@ -32,6 +32,7 @@ class GameViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var possibleWinSituations = [[0,1,2],[0,4,8],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[2,4,6]]
     let cellsPerRow: Int = 3
     let spaceBetweenRows: CGFloat = 10.0
+    
     //Order of preference: This is not the best way to do it but other ways would just be plagirizing
     var orderOfBestMoves = [4,0,2,6,8]
     
@@ -102,6 +103,7 @@ class GameViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
         
         collectionView.isUserInteractionEnabled = false
+        
         //Calculate collectionview dimensions
         collectionViewWidth = (UIScreen.main.bounds.width * 0.914667) - (spaceBetweenRows * CGFloat(cellsPerRow)) * scaleFactor
         collectionViewHeight = collectionViewWidth * 1.12
@@ -128,6 +130,7 @@ class GameViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func resetBoard() {
+        
         //Empty for using again during append
         userCell = false
         AIMoves = []
@@ -196,9 +199,8 @@ class GameViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 self.AIMoves.append(indexPath.row)
                 self.userCell = false
                 if self.AIMoves.count > 2 {
-                    if AIBrain().Win(Arr: self.AIMoves)  {
+                    if AIBrain().Win(Moves: self.AIMoves)  {
                         self.showAlert(withString: "Computer won! Better luck next time!")
-                        debugPrint("Computer won")
                     }
                 }
             self.AIMoveLoading.isHidden = true
@@ -212,9 +214,8 @@ class GameViewController: UIViewController, UICollectionViewDelegate, UICollecti
             self.playerMoves.append(indexPath.row)
             var didHumanWin = false
             if self.playerMoves.count > 2 {
-                if  AIBrain().Win(Arr: self.playerMoves) {
+                if  AIBrain().Win(Moves: self.playerMoves) {
                     self.showAlert(withString: "Congratulations! You achieved the impossible.")
-                    debugPrint("Player won")
                     didHumanWin = true
                 }
             }
@@ -229,8 +230,11 @@ class GameViewController: UIViewController, UICollectionViewDelegate, UICollecti
                         temp.remove(self.possibleCells[i])
                     }
                 }
+                
                 //Figure out the best move to block the user's win. This is not minimax so it won't prioritize it's own win. Focuses more on not losing.
+                
                 var bestMove : Int?
+                
                 //Goes through possible moves in order of preference
                 for value in self.playerMoves.filter({$0 != indexPath.row}){
                     for winSituations in self.possibleWinSituations{
@@ -259,18 +263,19 @@ class GameViewController: UIViewController, UICollectionViewDelegate, UICollecti
         cell.isUserInteractionEnabled = false
         if  AIMoves.count + playerMoves.count == 9{
             self.showAlert(withString: "Match Drawn!")
-             debugPrint("Game Over")
         }
     }
     
     func showAlert(withString message:String){
         AudioServicesPlaySystemSound(1519)
-        let alert = UIAlertController(title: "Game complete", message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Game over", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Play again", style: .cancel, handler: { action in
             self.performSegue(withIdentifier: "showSegue", sender: Any?.self)
         }))
         self.present(alert, animated: true)
     }
+    
+    
 
 
     // MARK: - ACTION BUTTONS
