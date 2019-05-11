@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Tic_Tac_Toe_Test_Suresh</string>
+    <string name="select_player_dialog_start_game">Start Game</string>
+    <string name="select_player_dialog_play">Play</string>
+    <string name="result_dialog_play_again">Play Again</string>
+    <string name="select_player_dialog_select_player">Select A Player</string>
+    <string name="select_player_radio_button_x">X</string>
+    <string name="select_player_radio_button_o">O</string>
+    <string name="result_dialog_winner_header">The Winner is:</string>
+    <string name="result_dialog_winner">Computer AI</string>
+
 </resources>

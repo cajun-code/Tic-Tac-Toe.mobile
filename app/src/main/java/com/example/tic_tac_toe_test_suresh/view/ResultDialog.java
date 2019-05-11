@@ -14,10 +14,10 @@ import com.example.tic_tac_toe_test_suresh.R;
 public class ResultDialog extends DialogFragment {
 
 
-    private MainActivity activity;
+    private GameActivity activity;
     private String winnerName;
 
-    public static ResultDialog newInstance(MainActivity activity, String winnerName) {
+    public static ResultDialog newInstance(GameActivity activity, String winnerName) {
         ResultDialog dialog = new ResultDialog();
         dialog.activity = activity;
         dialog.winnerName = winnerName;
@@ -35,7 +35,7 @@ public class ResultDialog extends DialogFragment {
         AlertDialog alertDialog = new AlertDialog.Builder(activity)
                 .setView(rootView)
                 .setCancelable(false)
-                .setPositiveButton("yes", ((dialog, which) -> onStartGame()))
+                .setPositiveButton(R.string.result_dialog_play_again, ((dialog, which) -> onStartGame()))
                 .create();
         alertDialog.setCanceledOnTouchOutside(false);
         alertDialog.setCancelable(false);

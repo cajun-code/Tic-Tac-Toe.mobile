@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -9,136 +8,138 @@
             name="viewModel"
             type="com.example.tic_tac_toe_test_suresh.viewModel.MainViewModel" />
     </data>
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary">
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_gravity="center">
+        android:background="@color/light_grey">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <Button
-                android:id="@+id/btn1"
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="90dp"
-                android:layout_margin="2pt"
-                android:background="@android:color/background_light"
-                android:onClick="@{() -> viewModel.onButtonClickedAt(0, 0)}"
-                android:text='@{viewModel.cells["00"]}'
-                android:textSize="36sp" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/btn2"
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="90dp"
-                android:layout_margin="2pt"
-                android:background="@android:color/background_light"
-                android:onClick="@{() -> viewModel.onButtonClickedAt(0, 1)}"
-                android:text='@{viewModel.cells["01"]}'
-                android:textSize="36sp" />
+                <Button
+                    android:id="@+id/btn1"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="90dp"
+                    android:layout_margin="2pt"
+                    android:background="@android:color/background_light"
+                    android:onClick="@{() -> viewModel.onButtonClickedAt(0, 0)}"
+                    android:text='@{viewModel.cells["00"]}'
+                    android:textSize="36sp" />
 
-            <Button
-                android:id="@+id/btn3"
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="90dp"
-                android:layout_margin="2pt"
-                android:background="@android:color/background_light"
-                android:onClick="@{() -> viewModel.onButtonClickedAt(0, 2)}"
-                android:text='@{viewModel.cells["02"]}'
-                android:textSize="36sp" />
+                <Button
+                    android:id="@+id/btn2"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="90dp"
+                    android:layout_margin="2pt"
+                    android:background="@android:color/background_light"
+                    android:onClick="@{() -> viewModel.onButtonClickedAt(0, 1)}"
+                    android:text='@{viewModel.cells["01"]}'
+                    android:textSize="36sp" />
 
-        </TableRow>
+                <Button
+                    android:id="@+id/btn3"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="90dp"
+                    android:layout_margin="2pt"
+                    android:background="@android:color/background_light"
+                    android:onClick="@{() -> viewModel.onButtonClickedAt(0, 2)}"
+                    android:text='@{viewModel.cells["02"]}'
+                    android:textSize="36sp" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            </TableRow>
 
-            <Button
-                android:id="@+id/btn4"
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="90dp"
-                android:layout_margin="2pt"
-                android:background="@android:color/background_light"
-                android:onClick="@{() -> viewModel.onButtonClickedAt(1, 0)}"
-                android:text='@{viewModel.cells["10"]}'
-                android:textSize="36sp" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/btn5"
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="90dp"
-                android:layout_margin="2pt"
-                android:background="@android:color/background_light"
-                android:onClick="@{() -> viewModel.onButtonClickedAt(1, 1)}"
-                android:text='@{viewModel.cells["11"]}'
-                android:textSize="36sp" />
+                <Button
+                    android:id="@+id/btn4"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="90dp"
+                    android:layout_margin="2pt"
+                    android:background="@android:color/background_light"
+                    android:onClick="@{() -> viewModel.onButtonClickedAt(1, 0)}"
+                    android:text='@{viewModel.cells["10"]}'
+                    android:textSize="36sp" />
 
-            <Button
-                android:id="@+id/btn6"
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="90dp"
-                android:layout_margin="2pt"
-                android:background="@android:color/background_light"
-                android:onClick="@{() -> viewModel.onButtonClickedAt(1, 2)}"
-                android:text='@{viewModel.cells["12"]}'
-                android:textSize="36sp" />
-        </TableRow>
+                <Button
+                    android:id="@+id/btn5"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="90dp"
+                    android:layout_margin="2pt"
+                    android:background="@android:color/background_light"
+                    android:onClick="@{() -> viewModel.onButtonClickedAt(1, 1)}"
+                    android:text='@{viewModel.cells["11"]}'
+                    android:textSize="36sp" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="87dp">
+                <Button
+                    android:id="@+id/btn6"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="90dp"
+                    android:layout_margin="2pt"
+                    android:background="@android:color/background_light"
+                    android:onClick="@{() -> viewModel.onButtonClickedAt(1, 2)}"
+                    android:text='@{viewModel.cells["12"]}'
+                    android:textSize="36sp" />
+            </TableRow>
 
-            <Button
-                android:id="@+id/btn7"
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="90dp"
-                android:layout_margin="2pt"
-                android:background="@android:color/background_light"
-                android:onClick="@{() -> viewModel.onButtonClickedAt(2, 0)}"
-                android:text='@{viewModel.cells["20"]}'
-                android:textSize="36sp" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="87dp">
 
-            <Button
-                android:id="@+id/btn8"
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="90dp"
-                android:layout_margin="2pt"
-                android:background="@android:color/background_light"
-                android:onClick="@{() -> viewModel.onButtonClickedAt(2, 1)}"
-                android:text='@{viewModel.cells["21"]}'
-                android:textSize="36sp" />
+                <Button
+                    android:id="@+id/btn7"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="90dp"
+                    android:layout_margin="2pt"
+                    android:background="@android:color/background_light"
+                    android:onClick="@{() -> viewModel.onButtonClickedAt(2, 0)}"
+                    android:text='@{viewModel.cells["20"]}'
+                    android:textSize="36sp" />
 
-            <Button
-                android:id="@+id/btn9"
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="90dp"
-                android:layout_margin="2pt"
-                android:background="@android:color/background_light"
-                android:onClick="@{() -> viewModel.onButtonClickedAt(2, 2)}"
-                android:text='@{viewModel.cells["22"]}'
-                android:textSize="36sp" />
+                <Button
+                    android:id="@+id/btn8"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="90dp"
+                    android:layout_margin="2pt"
+                    android:background="@android:color/background_light"
+                    android:onClick="@{() -> viewModel.onButtonClickedAt(2, 1)}"
+                    android:text='@{viewModel.cells["21"]}'
+                    android:textSize="36sp" />
 
-        </TableRow>
+                <Button
+                    android:id="@+id/btn9"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="90dp"
+                    android:layout_margin="2pt"
+                    android:background="@android:color/background_light"
+                    android:onClick="@{() -> viewModel.onButtonClickedAt(2, 2)}"
+                    android:text='@{viewModel.cells["22"]}'
+                    android:textSize="36sp" />
 
-    </TableLayout>
+            </TableRow>
+
+        </TableLayout>
     </android.support.constraint.ConstraintLayout>
 </layout>

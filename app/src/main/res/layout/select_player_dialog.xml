@@ -4,41 +4,41 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
+
     <TextView
         android:id="@+id/winner_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="8dp"
-        android:text="Select Player" />
+        android:text="@string/select_player_dialog_select_player" />
+
     <RadioGroup
-        android:id="@+id/symbol_radiogroup"
+        android:id="@+id/radiogroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-
-        <TextView
-            android:id="@+id/header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select X or O"
-            />
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/symbol_X"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="X"
-            android:buttonTint="@color/colorPrimary"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:buttonTint="@color/darker_grey"
             android:checked="true"
-            />
+            android:text="@string/select_player_radio_button_x" />
+
         <RadioButton
             android:id="@+id/symbol_O"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="O"
-            />
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:buttonTint="@color/darker_grey"
+            android:text="@string/select_player_radio_button_o" />
     </RadioGroup>
 
 </LinearLayout>

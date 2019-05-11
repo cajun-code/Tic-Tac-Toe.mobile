@@ -18,12 +18,10 @@ public class SelectPlayerDialog extends DialogFragment {
     private RadioGroup radioGroup;
     private RadioButton radioButton;
 
-    private String player;
-
-    private MainActivity activity;
+    private GameActivity activity;
     public View rootView;
 
-    public static SelectPlayerDialog newInstance(MainActivity activity) {
+    public static SelectPlayerDialog newInstance(GameActivity activity) {
         SelectPlayerDialog dialog = new SelectPlayerDialog();
         dialog.activity = activity;
         return dialog;
@@ -35,13 +33,13 @@ public class SelectPlayerDialog extends DialogFragment {
         rootView = LayoutInflater.from(getContext())
                 .inflate(R.layout.select_player_dialog, null, false);
 
-        radioGroup = rootView.findViewById(R.id.symbol_radiogroup);
+        radioGroup = rootView.findViewById(R.id.radiogroup);
 
         android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(getContext())
                 .setView(rootView)
-                .setTitle("Start Game")
+                .setTitle(R.string.select_player_dialog_start_game)
                 .setCancelable(false)
-                .setPositiveButton("Done", null)
+                .setPositiveButton(R.string.select_player_dialog_play, null)
                 .create();
         alertDialog.setCanceledOnTouchOutside(false);
         alertDialog.setCancelable(false);
@@ -57,6 +55,7 @@ public class SelectPlayerDialog extends DialogFragment {
     private void onDoneClicked() {
         int selectedId = radioGroup.getCheckedRadioButtonId();
         radioButton = rootView.findViewById(selectedId);
+        activity.onPlayersSelected(radioButton.getText().toString(), radioButton.getText().toString());
         dismiss();
     }
 }
