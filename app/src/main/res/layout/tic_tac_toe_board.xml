@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glFirstVertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".33"/>
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glSecondVertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".66"/>
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glSecondHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".66"/>
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glFirstHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".33"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_0_0"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/glFirstVertical"
+            app:layout_constraintBottom_toBottomOf="@id/glFirstHorizontal"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_0_1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="@id/glFirstVertical"
+            app:layout_constraintBottom_toTopOf="@id/glFirstHorizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/glSecondVertical"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_0_2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="@id/glSecondVertical"
+            app:layout_constraintBottom_toTopOf="@id/glFirstHorizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_1_0"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/glSecondHorizontal"
+            app:layout_constraintTop_toBottomOf="@id/glFirstHorizontal"
+            app:layout_constraintEnd_toEndOf="@id/glFirstVertical"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_1_1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="@id/glFirstVertical"
+            app:layout_constraintBottom_toTopOf="@id/glSecondHorizontal"
+            app:layout_constraintTop_toBottomOf="@id/glFirstHorizontal"
+            app:layout_constraintEnd_toStartOf="@id/glSecondVertical"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_1_2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="@id/glSecondVertical"
+            app:layout_constraintBottom_toTopOf="@id/glSecondHorizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/glFirstHorizontal"/>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_2_0"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/glSecondHorizontal"
+            app:layout_constraintEnd_toEndOf="@id/glFirstVertical"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_2_1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="@id/glFirstVertical"
+            app:layout_constraintTop_toBottomOf="@id/glSecondHorizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/glSecondVertical"/>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_2_2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="@id/glSecondVertical"
+            app:layout_constraintTop_toBottomOf="@id/glSecondHorizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
