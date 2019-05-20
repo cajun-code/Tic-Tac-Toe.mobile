@@ -11,7 +11,12 @@ class GameActivity : AppCompatActivity() {
         setContentView(R.layout.activity_game)
 
         val player = intent.getCharExtra("player", ' ')
-        Log.d("GameActivity", "Player is: '$player'")
+        Log.d(TAG, "Player is: '$player'")
+        val game = Game(player)
+        Log.d(TAG, "Player enum is: ${game.playerPiece}")
+    }
 
+    companion object {
+        const val TAG = "GameActivity"
     }
 }
