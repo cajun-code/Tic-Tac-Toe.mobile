@@ -7,12 +7,14 @@ import com.example.tictactoe.model.Game
 /*
  * Game Start Dialog
  */
-
 inline fun Activity.showStartGame(func: GameStartDialogHelper.() -> Unit): AlertDialog =
     GameStartDialogHelper(this).apply {
         func()
     }.create()
 
+/*
+ * Game Over Dialog
+ */
 inline fun Activity.showGameOver(func: GameOverDialogHelper.() -> Unit): AlertDialog =
     GameOverDialogHelper(this).apply {
         func()

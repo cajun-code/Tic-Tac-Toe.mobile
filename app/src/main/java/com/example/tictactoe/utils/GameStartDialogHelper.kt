@@ -32,6 +32,11 @@ class GameStartDialogHelper(private val context: Context) : BaseDialogHelper() {
         dialogView.findViewById<MaterialButton>(R.id.btn_start_game)
     }
 
+    //  quit game button
+    private val quitGame: MaterialButton by lazy {
+        dialogView.findViewById<MaterialButton>(R.id.btn_quit_game)
+    }
+
     //  x button
     private val xOption: MaterialCardView by lazy {
         dialogView.findViewById<MaterialCardView>(R.id.cv_x)
@@ -46,6 +51,12 @@ class GameStartDialogHelper(private val context: Context) : BaseDialogHelper() {
     //  startGameClickListener with listener
     fun startGameClickListener(func: (() -> Unit)? = null) =
         with(startGame) {
+            setClickListenerToDialogIcon(func, null)
+        }
+
+    //  quitGameClickListener with listener
+    fun quitGameClickListener(func: (() -> Unit)? = null) =
+        with(quitGame) {
             setClickListenerToDialogIcon(func, null)
         }
 
