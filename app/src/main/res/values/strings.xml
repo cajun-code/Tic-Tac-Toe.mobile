@@ -3,4 +3,5 @@
     <string name="pick_your_piece">Pick Your Piece</string>
     <string name="x">X</string>
     <string name="o">O</string>
+    <string name="start_game">Start Game</string>
 </resources>

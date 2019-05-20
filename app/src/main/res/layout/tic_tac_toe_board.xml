@@ -31,7 +31,7 @@
             app:layout_constraintGuide_percent=".33"/>
 
     <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_0_0"
+            android:id="@+id/btn1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +40,7 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_0_1"
+            android:id="@+id/btn2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="@id/glFirstVertical"
@@ -49,7 +49,7 @@
             app:layout_constraintEnd_toStartOf="@id/glSecondVertical"/>
 
     <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_0_2"
+            android:id="@+id/btn3"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="@id/glSecondVertical"
@@ -58,7 +58,7 @@
             app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_1_0"
+            android:id="@+id/btn4"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +67,7 @@
             app:layout_constraintEnd_toEndOf="@id/glFirstVertical"/>
 
     <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_1_1"
+            android:id="@+id/btn5"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="@id/glFirstVertical"
@@ -76,7 +76,7 @@
             app:layout_constraintEnd_toStartOf="@id/glSecondVertical"/>
 
     <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_1_2"
+            android:id="@+id/btn6"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="@id/glSecondVertical"
@@ -86,7 +86,7 @@
 
 
     <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_2_0"
+            android:id="@+id/btn7"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -96,7 +96,7 @@
 
 
     <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_2_1"
+            android:id="@+id/btn8"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="@id/glFirstVertical"
@@ -106,7 +106,7 @@
 
 
     <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_2_2"
+            android:id="@+id/btn9"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="@id/glSecondVertical"

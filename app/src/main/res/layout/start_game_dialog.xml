@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:minHeight="250dp"
+        android:padding="8dp"
+        android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_new_game"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Game"
+            android:textSize="28sp"
+            android:layout_marginBottom="8dp"
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textColor="@android:color/black"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Select a board piece to start"
+            app:layout_constraintTop_toBottomOf="@id/tv_new_game"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_x"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            app:layout_constraintEnd_toStartOf="@id/center_guide"
+            app:layout_constraintBottom_toTopOf="@id/btn_start_game">
+        <androidx.appcompat.widget.AppCompatTextView
+                android:gravity="center"
+                android:text="X"
+                android:textSize="40sp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/center_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent=".5"
+            android:orientation="vertical"/>
+
+    <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_o"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            app:layout_constraintBottom_toTopOf="@id/btn_start_game"
+            app:layout_constraintStart_toEndOf="@id/center_guide">
+        <androidx.appcompat.widget.AppCompatTextView
+                android:gravity="center"
+                android:text="O"
+                android:textSize="40sp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_start_game"
+            android:layout_width="0dp"
+            android:text="@string/start_game"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
