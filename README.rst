@@ -23,4 +23,6 @@ Submission Tips
 
 Submissions
 ---------------
-* Fork this repo and send us a pull request.
+* Fork this repo 
+* Write the app and commit offten with good messages 
+* Send us a pull request when complete before the interview.
